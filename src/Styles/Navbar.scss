@@ -34,6 +34,11 @@ img {
     font-size: 1.7rem;
   }
 }
+.navbar.active{
+  position: fixed;
+  top: 0;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+}
 
 .listicons,
 .BarsIcon {
@@ -54,11 +59,7 @@ img {
     padding: 0.6rem;
     overflow: hidden;
   }
-  .navbar.active{
-    position: fixed;
-    top: 0;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-  }
+  
   img {
     height: 70px;
     width: 70px;
