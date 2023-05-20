@@ -3,15 +3,16 @@
 .left-icons {
   @include flex-container(center, center);
   position: fixed;
-  width: 100%;
   bottom: 0;
   font-size: 1.7rem;
   gap: 2.5rem;
-  padding: 1rem 0;
+  padding-left: 2.6rem;
+  padding-right: 2rem;
+  padding-bottom: 1rem;
   border-top: 1px solid $hovercolor;
   overflow: hidden;
   z-index: 1000;
-  h4{
+  h4 {
     display: none;
   }
 }
@@ -27,7 +28,7 @@
     border: none;
     width: 400px;
   }
- 
+
   .left-iconsdiv {
     @include flex-container(flex-start, center);
     gap: 2.6rem;
@@ -41,7 +42,7 @@
     h4 {
       display: flex;
     }
-    .left-iconsdiv  {
+    .left-iconsdiv {
       height: 3.8rem;
       background-color: $iconsHoverColor;
       width: 300px;
