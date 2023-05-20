@@ -7,7 +7,7 @@ import {
   RiInboxArchiveLine,
   RiDeleteBin6Line,
 } from "react-icons/all";
-export const MainContainer = () => {
+export const mainContainer = () => {
   return (
     <div className="main-container">
       <div className="left-icons">
