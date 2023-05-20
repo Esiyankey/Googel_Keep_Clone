@@ -1,15 +1,14 @@
-import { useState } from 'react'
-import { Navbar } from './components/Navbar';
-import { MainContainer } from './components/mainContainer';
+import { useState } from "react";
+import { Navbar } from "./components/Navbar";
+import { MainSection } from "./components/MainSection";
 
 function App() {
-
   return (
     <>
-      <Navbar/>
-      <MainContainer/>
+      <Navbar />
+      <MainSection />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
