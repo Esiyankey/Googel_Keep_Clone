@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import {
   HiBars3,
   FaSistrix,
@@ -10,8 +10,21 @@ import {
 import keepLogo from "../assets/keep-logo2.png";
 import "../Styles/Navbar.scss";
 export const Navbar = () => {
+
+
+  const [activeNavbar, SetActiveNavbar] = useState(false);
+
+  const ChangeBackground = () => {
+    if (window.scrollY > 50) {
+      SetActiveNavbar(true);
+    } else {
+      SetActiveNavbar(false);
+    }
+  };
+  window.addEventListener("scroll", ChangeBackground);
+
   return (
-    <div className="navbar">
+    <div className={activeNavbar ? "navbar active" : "navbar"}>
       <div className="left-navbar">
         <div className="icons bar">
           <HiBars3 className="BarsIcon icon" />

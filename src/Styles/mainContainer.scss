@@ -1,15 +1,46 @@
 @import "variables";
 
+.left-icons {
+  @include flex-container(center, center);
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  font-size: 1.7rem;
+  gap: 2.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid $hovercolor;
+}
 
-
-.left-icons{
-     @include flex-container(center,center);
-     position:fixed;
-     z-index: 1000;
-     width: 100%;
-     bottom: 0;
-     font-size: 1.7rem;
-    gap: 2.5rem;
-    padding: 1rem 0;
-    border-top: 1px solid $hovercolor;
+@media screen and (min-width: 640px) {
+  .left-icons {
+    @include flex-container(flex-start, flex-start);
+    position: relative;
+    flex-direction: column;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    gap: 2rem;
+    border: none;
+    width: 400px;
+  }
+ 
+  .left-iconsdiv {
+    @include flex-container(flex-start, center);
+    gap: 2.6rem;
+    transition: 0.3s ease-in;
+    h4 {
+      display: none;
+      font-size: 1rem;
+    }
+  }
+  .left-icons:hover {
+    h4 {
+      display: flex;
+    }
+    .left-iconsdiv  {
+      height: 3.8rem;
+      background-color: $iconsHoverColor;
+      width: 300px;
+      border-radius: 0 100px 100px 0;
+    }
+  }
 }
