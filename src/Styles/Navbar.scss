@@ -8,6 +8,7 @@ body {
   font-size: $font-size;
   color: $color;
   overflow: hidden;
+  z-index: 10;
 }
 
 img {
@@ -26,7 +27,6 @@ img {
   border-bottom: 0.135rem solid $hovercolor;
   position:sticky;
   padding: 0.4rem;
-  width: 100%;
   overflow: hidden;
 
   h2 {
@@ -50,7 +50,6 @@ img {
 .right-navbar {
   @include flex-container(space-around, center);
   font-size: 1.5rem;
-  margin-right: 1rem;
   gap: 0.5rem;
 }
 
