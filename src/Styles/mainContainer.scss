@@ -9,6 +9,9 @@
   gap: 2.5rem;
   padding: 1rem 0;
   border-top: 1px solid $hovercolor;
+  h4{
+    display: none;
+  }
 }
 
 @media screen and (min-width: 640px) {
