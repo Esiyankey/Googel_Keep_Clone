@@ -1,0 +1,87 @@
+@import "variables";
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $color;
+}
+
+img {
+  height: 60px;
+  width: 60px;
+}
+
+.BarsIcon {
+  font-size: 1.7rem;
+}
+
+.navbar {
+  @include flex-container(space-between, center);
+  height: 50px;
+  border-bottom: 0.135rem solid $hovercolor;
+  position: fixed;
+  padding: 0.4rem;
+  width: 100%;
+  overflow: hidden;
+
+  h2 {
+    font-weight: 300;
+    font-size: 1.7rem;
+  }
+}
+
+.listicons,
+.BarsIcon {
+  display: none;
+}
+.left-navbar {
+  @include flex-container(space-between, center);
+}
+.right-navbar {
+  @include flex-container(space-around, center);
+  margin-right: 1.2rem;
+  font-size: 1.5rem;
+  gap: 1.4rem;
+}
+
+@media screen and (min-width: 640px) {
+  .navbar {
+    padding: 0.6rem;
+  }
+  img {
+    height: 70px;
+    width: 70px;
+  }
+  .listicons,
+  .BarsIcon {
+    display: flex;
+  }
+  .left-navbar,
+  .right-navbar {
+    margin: 1.3rem;
+  }
+  .BarsIcon {
+    position: relative;
+    left: 0.6rem;
+  }
+  .listicons {
+    gap: 1.4rem;
+  }
+  .icons {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    text-align: center;
+    transition: 0.3s ease-in;
+  }
+  .icon {
+    position: relative;
+    top: 0.8rem;
+  }
+  .icons:hover {
+    background-color: $hovercolor;
+  }
+}

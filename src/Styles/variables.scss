@@ -1,0 +1,9 @@
+@mixin flex-container ($justify,$align) {
+    display: flex;
+    justify-content:$justify;
+    align-items: $align;
+  }
+$hovercolor:#d9dce0;
+  $color:#5e6368;
+  $font-family: "Roboto",arial,sans-serif;
+  $font-size:15px;
