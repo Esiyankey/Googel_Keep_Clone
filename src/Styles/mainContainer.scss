@@ -1,0 +1,13 @@
+@import "variables";
+
+
+
+.left-icons{
+     @include flex-container(center,center);
+     position:fixed;
+     width: 100%;
+     bottom: 0;
+     font-size: 2rem;
+    gap: 3rem;
+    padding: 1rem 0;
+}
