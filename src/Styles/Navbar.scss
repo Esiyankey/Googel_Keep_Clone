@@ -21,6 +21,7 @@ img {
 
 .navbar {
   @include flex-container(space-between, center);
+  z-index: 1000;
   height: 50px;
   border-bottom: 0.135rem solid $hovercolor;
   position:sticky;
@@ -57,7 +58,6 @@ img {
     position: fixed;
     top: 0;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-    z-index: 1000;
   }
   img {
     height: 70px;
