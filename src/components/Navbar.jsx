@@ -10,9 +10,11 @@ import {
 import keepLogo from "../assets/keep-logo2.png";
 import "../Styles/Navbar.scss";
 export const Navbar = () => {
-
-
   const [activeNavbar, SetActiveNavbar] = useState(false);
+const [search,setSearch] =useState(false)
+const handleSearchClick =()=>{
+  setSearch(!search)
+}
 
   const ChangeBackground = () => {
     if (window.scrollY > 50) {
@@ -33,8 +35,9 @@ export const Navbar = () => {
         <h2>Keep</h2>
       </div>
       <div className="right-navbar">
-        <div className="icons">
-          <FaSistrix className="icon" />
+        <div className="icons fasistrix">
+          <input type="text" className= {search?'fasistrix-input click':'fasistrix-input'} placeholder="Search" />
+          <FaSistrix className="icon fasistrix-icon" onClick={handleSearchClick}/>
         </div>
         <div className="icons">
           <IoRefresh className="icon" />
