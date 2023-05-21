@@ -6,7 +6,7 @@
   bottom: 0;
   font-size: 1.7rem;
   gap: 2.5rem;
-  padding: 1.5rem 2rem 1.5rem 2.7rem;
+  padding: 1.5rem 2rem 1.5rem 2rem;
   border-top: 1px solid $hovercolor;
   overflow: hidden;
   z-index: 1000;
@@ -37,7 +37,7 @@
 .inputIcons {
   position: absolute;
   top: 20%;
-  right: 40px; /* Adjust this value as needed */
+  right: 70px; /* Adjust this value as needed */
   font-size: 2rem; /* Adjust this value as needed */
 }
 .input-icons{
