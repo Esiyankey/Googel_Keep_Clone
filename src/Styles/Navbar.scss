@@ -28,13 +28,13 @@ img {
   padding: 1rem;
   box-sizing: border-box;
   position:absolute;
-  right: 1.5rem;
-  z-index:10;
+  right: 1rem;
   border-radius: 3px;
   border: none;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.6);
   font-size: 1.12rem;
   display: none;
+  text-align: center;
 }
 .fasistrix-input.click{
   display: flex;
