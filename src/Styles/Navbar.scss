@@ -28,7 +28,7 @@ img {
   padding: 1rem;
   box-sizing: border-box;
   position:absolute;
-  right: 3rem;
+  right: 1.5rem;
   z-index:10;
   border-radius: 3px;
   border: none;
@@ -42,9 +42,7 @@ img {
 .fasistrix-input:focus{
   outline: none;
 }
-.fasistrix-icon{
- 
-}
+
 
 
 
@@ -117,5 +115,13 @@ img {
   }
   .icons:hover {
     background-color: $hovercolor;
+  }
+  .fasistrix{
+    @include flex-container(space-between,center)
+  }
+  .fasistrix-input{
+    position: relative;
+    right: 17rem;
+    z-index: 0;
   }
 }
