@@ -66,6 +66,8 @@ img {
 }
 .fasistrix-input:focus {
   outline: none;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.6);
+  background-color: white;
 }
 // .fasistrix-input.click {
 //   display: flex;
