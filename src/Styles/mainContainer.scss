@@ -33,12 +33,18 @@
   outline: none;
 }
 .NotesInput{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
+  left: 50px;
 }
 
 .inputIcons {
-  position: absolute;
-  top: 20%;
+  display: flex;
+position: relative;
+right: 20px;
   
   font-size: 2rem; /* Adjust this value as needed */
 }
@@ -47,7 +53,7 @@
   margin-right: 0.5rem;
 }
 .backgroundImage{
-  margin-top: 100px;
+  margin-top: 70px;
 }
 .outline{
   font-size: 6rem;
