@@ -27,8 +27,6 @@ export const Navbar = () => {
 
   return (
     <div className={activeNavbar ? "navbar active" : "navbar"}>
-
-
       <div className="left-navbar">
         <div className="icons bar">
           <HiBars3 className="BarsIcon icon" />
@@ -40,7 +38,7 @@ export const Navbar = () => {
 
       <div className="right-navbar">
         <div className="icons fasistrix">
-          <input type="text" className={search ? "fasistrix-input click" : "fasistrix-input"} placeholder="Search" />
+          <input type="text" className="fasistrix-input" placeholder="Search" />
           <FaSistrix
             className="icon fasistrix-icon"
             onClick={handleSearchClick}

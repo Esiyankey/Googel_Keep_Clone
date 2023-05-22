@@ -9,6 +9,7 @@
   padding: 1.5rem 2rem 1.5rem 2rem;
   border-top: 1px solid $hovercolor;
   overflow: hidden;
+  text-align: center;
   z-index: 1000;
   h4 {
     display: none;
@@ -17,9 +18,14 @@
 .take-notes {
   text-align: center;
   margin-top: 1rem;
+  display: block;
 }
 
+.NotesInput {
+  @include flex-container(center,center);
+}
 .input {
+  position: relative;
   width: 300px;
   padding: 1rem;
   box-sizing: border-box;
@@ -32,27 +38,19 @@
   border: none;
   outline: none;
 }
-.NotesInput {
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  left: 50px;
-}
-
 .inputIcons {
-  display: flex;
-  position: relative;
-  right: 20px;
-
+  position: absolute;
+  right: 4rem;
   font-size: 2rem; /* Adjust this value as needed */
 }
+
 .input-icons {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
 .backgroundImage {
+ @include flex-container(center,center);
+  flex-direction: column;
   margin-top: 70px;
 }
 .outline {
@@ -60,7 +58,8 @@
   opacity: 0.5;
 }
 h4 {
-  font-size: 1.2rem;
+  padding-top: 1rem;
+  font-size: 1.4rem;
   font-weight: 400;
 }
 @media screen and (min-width: 640px) {
@@ -81,7 +80,7 @@ h4 {
 
   .iconsdiv {
     @include flex-container(flex-start, center);
-    gap: 2.6rem;
+    gap: 2.7rem;
     transition: 0.1s ease-in;
     padding: 12px 0;
     h4 {
@@ -118,10 +117,11 @@ h4 {
       display: flex;
     }
   }
-  .take-notes {
-    flex-direction: column;
-    @include flex-container(center, center);
+  
+  .take-notes{
+    margin-top: 3rem;
   }
+
   .input {
     width: 700px;
     font-size: 1.5rem;
@@ -129,8 +129,13 @@ h4 {
     align-items: center;
   }
   .inputIcons {
-    top: 8px;
-    right: 50px;
+  position: relative;
+  right: unset;
+  left: -7rem;
+
+}
+  .backgroundImage {
+    margin-top: 120px;
   }
   .outline {
     font-size: 9rem;
@@ -140,12 +145,8 @@ h4 {
     font-size: 1.5rem;
     font-weight: 400;
   }
-  .backgroundImage {
-    margin-top: 220px;
-  }
-}
-@media screen and (max-width: 980px) {
-  .inputIcons {
-    right: 120px;
-  }
+// @media screen and (max-width: 980px) {
+//   .inputIcons {
+//     right: 120px;
+//   }
 }

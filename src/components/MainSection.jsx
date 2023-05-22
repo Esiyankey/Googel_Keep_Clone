@@ -48,16 +48,19 @@ export const MainSection = () => {
             <h4>label</h4>
           </div>
         </div>
+        
+        <div className="left-iconsdiv">
         <div
-          className={click === 2 ? "left-iconsdiv Clicked" : "left-iconsdiv"}
+          className={click === 2 ? "iconsdiv Clicked" : "iconsdiv"}
           onClick={() => handleClick(2)}
           onMouseEnter={handleHover}
         >
-          <div className="iconsdiv">
             <RiPencilLine className="iconleft" />
             <h4>Edit label</h4>
           </div>
         </div>
+
+
         <div className="left-iconsdiv">
           <div
             className={click === 3 ? "iconsdiv Clicked" : "iconsdiv"}
@@ -68,6 +71,9 @@ export const MainSection = () => {
             <h4>Archive</h4>
           </div>
         </div>
+
+
+
         <div className="left-iconsdiv">
           <div
             className={click === 4 ? "iconsdiv Clicked" : "iconsdiv"}

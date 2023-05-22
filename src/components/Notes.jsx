@@ -32,11 +32,11 @@ export const Notes = () => {
             <BiImage className="input-icons" />
           </div>
         </div>
+      </div>
         <div className="backgroundImage">
           <AiOutlineBulb className="outline" />
           <h4>Notes you add appear here</h4>
         </div>
-      </div>
     </>
   );
 };
