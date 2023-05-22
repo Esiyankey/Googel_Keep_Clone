@@ -16,7 +16,7 @@
 }
 .take-notes {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 1rem;
 }
 
 .input {
@@ -32,7 +32,7 @@
   border: none;
   outline: none;
 }
-.NotesInput{
+.NotesInput {
   text-align: center;
   display: flex;
   justify-content: center;
@@ -43,23 +43,23 @@
 
 .inputIcons {
   display: flex;
-position: relative;
-right: 20px;
-  
+  position: relative;
+  right: 20px;
+
   font-size: 2rem; /* Adjust this value as needed */
 }
 .input-icons {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-.backgroundImage{
+.backgroundImage {
   margin-top: 70px;
 }
-.outline{
+.outline {
   font-size: 6rem;
   opacity: 0.5;
 }
-h4{
+h4 {
   font-size: 1.2rem;
   font-weight: 400;
 }
