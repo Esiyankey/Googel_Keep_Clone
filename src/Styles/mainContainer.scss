@@ -14,33 +14,35 @@
     display: none;
   }
 }
-.take-notes{
+.take-notes {
   text-align: center;
-  position: relative;
   margin-top: 2rem;
 }
 
-.input{
+.input {
   width: 300px;
   padding: 1rem;
-  box-sizing:border-box;
+  box-sizing: border-box;
   border: none;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.6);
   border-radius: 4px;
   font-size: 1.2rem;
 }
-.input:focus{
+.input:focus {
   border: none;
   outline: none;
+}
+.NotesInput{
+  position: relative;
 }
 
 .inputIcons {
   position: absolute;
   top: 20%;
-  right: 70px; /* Adjust this value as needed */
+  
   font-size: 2rem; /* Adjust this value as needed */
 }
-.input-icons{
+.input-icons {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
@@ -49,7 +51,7 @@
   .left-icons {
     @include flex-container(flex-start, flex-start);
     position: fixed;
-    padding-left:0 ;
+    padding-left: 0;
     top: 55px;
     left: 0;
     flex-direction: column;
@@ -71,20 +73,19 @@
       font-size: 1rem;
     }
   }
-  .iconleft{
+  .iconleft {
     position: relative;
     left: 0.68rem;
-    top:0.1rem;
+    top: 0.1rem;
   }
-  .iconsdiv.Clicked{
+  .iconsdiv.Clicked {
     height: 25px;
     width: 48px;
     border-radius: 50%;
     background-color: #ffeec3;
     text-align: center;
- 
   }
-  .iconsdiv.Clicked:hover{
+  .iconsdiv.Clicked:hover {
     background-color: #ffeec3;
   }
 
@@ -100,15 +101,35 @@
     h4 {
       display: flex;
     }
-
   }
-
-  .input{
+  .take-notes {
+    flex-direction: column;
+    @include flex-container(center, center);
+  }
+  .input {
     width: 700px;
     font-size: 1.5rem;
     padding: 0.7rem;
+    align-items: center;
   }
-  .inputIcons{
-    right: 100px;
+  .inputIcons {
+    top: 8px;
+    right: 50px;
+  }
+  .outline {
+    font-size: 9rem;
+    opacity: 0.5;
+  }
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  .backgroundImage {
+    margin-top: 220px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .inputIcons {
+    right: 120px;
   }
 }

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import {
   HiBars3,
   FaSistrix,
@@ -11,10 +11,10 @@ import keepLogo from "../assets/keep-logo2.png";
 import "../Styles/Navbar.scss";
 export const Navbar = () => {
   const [activeNavbar, SetActiveNavbar] = useState(false);
-const [search,setSearch] =useState(false)
-const handleSearchClick =()=>{
-  setSearch(!search)
-}
+  const [search, setSearch] = useState(false);
+  const handleSearchClick = () => {
+    setSearch(!search);
+  };
 
   const ChangeBackground = () => {
     if (window.scrollY > 50) {
@@ -27,6 +27,8 @@ const handleSearchClick =()=>{
 
   return (
     <div className={activeNavbar ? "navbar active" : "navbar"}>
+
+
       <div className="left-navbar">
         <div className="icons bar">
           <HiBars3 className="BarsIcon icon" />
@@ -34,11 +36,17 @@ const handleSearchClick =()=>{
         <img src={keepLogo} alt="Keep logo here" />
         <h2>Keep</h2>
       </div>
+
+
       <div className="right-navbar">
         <div className="icons fasistrix">
-          <input type="text" className= {search?'fasistrix-input click':'fasistrix-input'} placeholder="Search" />
-          <FaSistrix className="icon fasistrix-icon" onClick={handleSearchClick}/>
+          <input type="text" className={search ? "fasistrix-input click" : "fasistrix-input"} placeholder="Search" />
+          <FaSistrix
+            className="icon fasistrix-icon"
+            onClick={handleSearchClick}
+          />
         </div>
+
         <div className="icons">
           <IoRefresh className="icon" />
         </div>

@@ -19,15 +19,15 @@ img {
 .BarsIcon {
   font-size: 1.7rem;
 }
-.fasistrix{
-  position:relative;
+.fasistrix {
+  position: relative;
   display: flex;
   align-items: center;
 }
-.fasistrix-input{
+.fasistrix-input {
   padding: 0.8rem 0;
   box-sizing: border-box;
-  position:absolute;
+  position: absolute;
   right: 1.9rem;
   border-radius: 3px;
   border: none;
@@ -36,22 +36,19 @@ img {
   display: none;
   text-align: center;
 }
-.fasistrix-input.click{
+.fasistrix-input.click {
   display: flex;
 }
-.fasistrix-input:focus{
+.fasistrix-input:focus {
   outline: none;
 }
-
-
-
 
 .navbar {
   @include flex-container(space-between, center);
   z-index: 1000;
   height: 50px;
   border-bottom: 0.135rem solid $hovercolor;
-  position:sticky;
+  position: sticky;
   padding: 0.4rem;
   overflow: hidden;
 
@@ -60,10 +57,10 @@ img {
     font-size: 1.7rem;
   }
 }
-.navbar.active{
+.navbar.active {
   position: fixed;
   top: 0;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .listicons,
@@ -85,7 +82,7 @@ img {
     padding: 0.6rem;
     overflow: hidden;
   }
-  
+
   img {
     height: 70px;
     width: 70px;
@@ -116,12 +113,19 @@ img {
   .icons:hover {
     background-color: $hovercolor;
   }
-  .fasistrix{
-    @include flex-container(space-between,center)
+  .fasistrix {
+    display: inline-block;
   }
-  .fasistrix-input{
-    position: relative;
+  .fasistrix-input {
+    width: 900px;
     right: 17rem;
-    z-index: 0;
+    background-color: #f0f3f4;
+    text-align: start;
+    box-shadow: none;
+    padding-left: 4rem;
+  }
+  .fasistrix-icon{
+    position: relative;
+    right: 70rem;
   }
 }
