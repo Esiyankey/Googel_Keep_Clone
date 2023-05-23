@@ -30,8 +30,8 @@ img {
     width: 100%;
     border-radius: 0.7rem;
     border: none;
-    background-color: #0067fe;
-    color: #cde4ff;
+    background-color: $iconsHoverColor;
+    color: white;
     font-size: 1.2rem;
   }
   
@@ -44,7 +44,7 @@ input {
   border: none;
   padding: 1rem;
   font-size: 1.1rem;
-  border-bottom: 0.3rem solid #f4f5f6;
+  border-bottom: 0.1rem solid #f4f5f6;
 }
 input:focus {
   outline: none;
@@ -55,7 +55,7 @@ small {
   display: block;
   text-align: center;
   padding-top: 0.9rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #666869;
   a {
     text-decoration: none;

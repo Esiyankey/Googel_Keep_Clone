@@ -41,7 +41,7 @@ export const SignIn = () => {
   return (
     <div className="sign-in">
       <div className="sign-container">
-        
+
       </div>
       <div className="image">
         <img
@@ -67,7 +67,7 @@ export const SignIn = () => {
             />
             <input
               type="password"
-              placeholder="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -83,7 +83,7 @@ export const SignIn = () => {
             Sign up
           </button>
           <small>
-            Already have an Account? <a href="#">Login</a>
+            Already Have an Account? <a href="#">Login</a>
           </small>
         </form>
       </div>
