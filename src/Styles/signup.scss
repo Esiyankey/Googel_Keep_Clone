@@ -1,0 +1,67 @@
+@import "variables";
+
+.sign-in {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  z-index: 3000;
+}
+.image {
+  width: 100%;
+}
+img {
+  width: 100%;
+  height: 13rem;
+  object-fit: cover;
+}
+.Login-div {
+  padding: 2rem;
+  text-align: start;
+  h2 {
+    padding-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .login-btn {
+    margin: 1rem 0;
+    padding: 1rem;
+    width: 100%;
+    border-radius: 0.7rem;
+    border: none;
+    background-color: #0067fe;
+    color: #cde4ff;
+    font-size: 1.2rem;
+  }
+  
+}
+.login-input {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  border: none;
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-bottom: 0.3rem solid #f4f5f6;
+}
+input:focus {
+  outline: none;
+}
+
+
+small {
+  display: block;
+  text-align: center;
+  padding-top: 0.9rem;
+  font-size: 1.2rem;
+  color: #666869;
+  a {
+    text-decoration: none;
+    color: #5da0e2;
+  }
+}
+@media screen and (min-width:640px){
+    
+}
