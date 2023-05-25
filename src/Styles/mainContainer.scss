@@ -1,4 +1,8 @@
 @import "variables";
+.main-container{
+  @include flex-container(center,center);
+
+}
 
 .left-icons {
   @include flex-container(center, center);
@@ -15,15 +19,18 @@
     display: none;
   }
 }
+
+//notes
 .take-notes {
   text-align: center;
   margin-top: 1rem;
-  display: block;
 }
 
 .NotesInput {
   @include flex-container(center,center);
 }
+
+//input
 .input {
   position: relative;
   width: 300px;
@@ -41,13 +48,16 @@
 .inputIcons {
   position: absolute;
   right: 4rem;
-  font-size: 2rem; /* Adjust this value as needed */
+  font-size: 2rem; 
 }
 
 .input-icons {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
+
+
+//background
 .backgroundImage {
  @include flex-container(center,center);
   flex-direction: column;
@@ -87,7 +97,8 @@ h5 {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
 }
 .input-pin{
-  @include flex-container(center,center);
+  // @include flex-container(center,center);
+  @include flex-container(space-between,center);
   .title{
     border:none;
     font-size: 1.3rem;
@@ -95,6 +106,9 @@ h5 {
     width: 100%;
   }
   margin-bottom: 2rem;
+}
+.createNote{
+  text-align: start;
 }
 .note{
   border: none;
@@ -129,11 +143,28 @@ font-size: 1.4rem;
 .button:hover{
   background-color: #f0f3f4;
 }
+.note-down{
+  margin-top: 2rem;
+  background-color: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  width: 300px;
+  padding: 0.5rem;
+  transition: 0.3s ease;
+}
+.note-down:hover{
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+
+}
 
 
-
+//Media Query
 
 @media screen and (min-width: 640px) {
+
+
+
+  //side bar 
   .left-icons {
     @include flex-container(flex-start, flex-start);
     position: fixed;
@@ -189,6 +220,8 @@ font-size: 1.4rem;
     }
   }
   
+
+  //notes
   .take-notes{
     margin-top: 3rem;
   }
@@ -228,6 +261,18 @@ font-size: 1.4rem;
 .input-pin,.title{
  width: 100%;
 }
-
-
+.note-down{
+  width: 700px;
+}
+.input-pin{
+  @include flex-container(space-between,center);
+}
+.create-title{
+  font-size: 1.4rem;
+}
+.createNote{
+  text-align: start;
+  margin-bottom: 1.4rem;
+  font-size: 1.2rem;
+}
 }

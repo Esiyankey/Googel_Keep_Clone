@@ -59,8 +59,6 @@ export const MainSection = () => {
             <h4>Edit label</h4>
           </div>
         </div>
-
-
         <div className="left-iconsdiv">
           <div
             className={click === 3 ? "iconsdiv Clicked" : "iconsdiv"}
@@ -71,9 +69,6 @@ export const MainSection = () => {
             <h4>Archive</h4>
           </div>
         </div>
-
-
-
         <div className="left-iconsdiv">
           <div
             className={click === 4 ? "iconsdiv Clicked" : "iconsdiv"}
