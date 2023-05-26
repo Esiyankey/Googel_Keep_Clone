@@ -9,6 +9,7 @@
   position: fixed;
   bottom: 0;
   font-size: 1.7rem;
+  background-color: #feffff;
   gap: 2.5rem;
   padding: 1.5rem 2rem 1.5rem 2rem;
   border-top: 1px solid $hovercolor;
@@ -61,7 +62,7 @@
 .backgroundImage {
  @include flex-container(center,center);
   flex-direction: column;
- 
+ margin-top: 100px;
 }
 .outline {
   font-size: 6rem;
@@ -109,6 +110,7 @@ h5 {
 }
 .createNote{
   text-align: start;
+  padding-bottom: 1rem;
 }
 .note{
   border: none;

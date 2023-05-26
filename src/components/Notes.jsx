@@ -8,11 +8,16 @@ import {
   BsThreeDotsVertical,
   BsPin,
 } from "react-icons/all";
-
+import { db } from "./firebase";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 export const Notes = () => {
+  const [showNotes, setShowNotes] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
   const [createNote, setCreateNote] = useState(false);
+  const [title, setTitle] = useState("");
+  const [note, setNote] = useState("");
   const [notes, setNotes] = useState([]);
+  const notesCollectionRef = collection(db, "todos");
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -21,13 +26,31 @@ export const Notes = () => {
     setIsFocused(false);
   };
 
-  const handleCreateNote = () => {
-    const newNote = {
-      title,
-      note,
-    };
+  const ShowNotesList = async () => {
+    try {
+      const data = await getDocs(notesCollectionRef);
+      const fetchedNotes = [];
+      data.forEach((doc) => {
+        fetchedNotes.push({ id: doc.id, ...doc.data() });
+      });
+      setShowNotes(fetchedNotes);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
-    setNotes([...notes, newNote]);
+  useEffect(() => {
+    ShowNotesList();
+  }, []);
+
+  const handleCreateNote = async () => {
+    const newNote = { title, note };
+    try {
+      await addDoc(notesCollectionRef, newNote);
+    } catch (error) {
+      console.error(error);
+    }
+    setShowNotes([...showNotes, newNote]);
     setCreateNote(true);
     setNote("");
     setTitle("");
@@ -40,8 +63,7 @@ export const Notes = () => {
       setNote(e.target.value);
     }
   };
-  const [title, setTitle] = useState("");
-  const [note, setNote] = useState("");
+
   return (
     <>
       <div className="div">
@@ -104,11 +126,11 @@ export const Notes = () => {
             </div>
           </div>
 
-          {createNote &&
-            notes.map((item) => {
+          {
+            showNotes.map((item) => {
               return (
                 <>
-                  <div className="note-down">
+                  <div className="note-down" key={item.id}>
                     <div className="input-pin">
                       <div className="create-title">{item.title}</div>
                       <BsPin className="pin" />

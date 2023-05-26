@@ -21,6 +21,9 @@ export const Navbar = () => {
   const handleRemoveGrid = () => {
     setShowGrid(false);
   };
+  const refreshPage = () => {
+    window.location.reload();
+  };
   const handleSearchClick = () => {
     setSearch(!search);
   };
@@ -54,7 +57,7 @@ export const Navbar = () => {
         </div>
 
         <div className="icons">
-          <IoRefresh className="icon" />
+          <IoRefresh className="icon" onClick={refreshPage} />
         </div>
         <div className="listicons icons">
           <BiGridAlt className="icon grid" onClick={handleShowGrid} />
@@ -64,7 +67,7 @@ export const Navbar = () => {
           <MdOutlineSettings className="icon set" />
         </div>
         <div className="icons islogin">
-          <Link to="/login"> <a href="">Login</a>  </Link>
+          <Link to="/login"  style={{  textDecoration: 'none' ,color:"orange" }}>Login</Link>
         </div>
       </div>
     </div>
