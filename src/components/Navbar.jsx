@@ -9,9 +9,18 @@ import {
 } from "react-icons/all";
 import keepLogo from "../assets/keep-logo2.png";
 import "../Styles/Navbar.scss";
+import { Link } from "react-router-dom";
 export const Navbar = () => {
   const [activeNavbar, SetActiveNavbar] = useState(false);
   const [search, setSearch] = useState(false);
+  const [showGrid, setShowGrid] = useState(false);
+
+  const handleShowGrid = () => {
+    setShowGrid(true);
+  };
+  const handleRemoveGrid = () => {
+    setShowGrid(false);
+  };
   const handleSearchClick = () => {
     setSearch(!search);
   };
@@ -35,7 +44,6 @@ export const Navbar = () => {
         <h2>Keep</h2>
       </div>
 
-
       <div className="right-navbar">
         <div className="icons fasistrix">
           <input type="text" className="fasistrix-input" placeholder="Search" />
@@ -48,16 +56,15 @@ export const Navbar = () => {
         <div className="icons">
           <IoRefresh className="icon" />
         </div>
-        <div className="listicons">
-          <div className="icons">
-            <BiGridAlt className="icon" />
-          </div>
-          <div className="icons">
-            <CiGrid2H className="icon" />
-          </div>
+        <div className="listicons icons">
+          <BiGridAlt className="icon grid" onClick={handleShowGrid} />
+          <CiGrid2H className="icon cigrid" onClick={handleRemoveGrid} />
         </div>
         <div className="icons">
-          <MdOutlineSettings className="icon" />
+          <MdOutlineSettings className="icon set" />
+        </div>
+        <div className="icons">
+          <Link to="/login"> <a href="">Login</a>  </Link>
         </div>
       </div>
     </div>

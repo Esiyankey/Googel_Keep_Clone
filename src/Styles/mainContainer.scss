@@ -5,14 +5,13 @@
 }
 
 .left-icons {
-  @include flex-container(center, center);
+  @include flex-container(center,center);
   position: fixed;
   bottom: 0;
   font-size: 1.7rem;
   gap: 2.5rem;
   padding: 1.5rem 2rem 1.5rem 2rem;
   border-top: 1px solid $hovercolor;
-  overflow: hidden;
   text-align: center;
   z-index: 1000;
   h4 {
@@ -24,6 +23,7 @@
 .take-notes {
   text-align: center;
   margin-top: 1rem;
+  overflow-y: auto;
 }
 
 .NotesInput {
@@ -61,7 +61,7 @@
 .backgroundImage {
  @include flex-container(center,center);
   flex-direction: column;
-  margin-top: 70px;
+ 
 }
 .outline {
   font-size: 6rem;
@@ -160,7 +160,7 @@ font-size: 1.4rem;
 
 //Media Query
 
-@media screen and (min-width: 640px) {
+@media screen and (min-width: 800px) {
 
 
 
@@ -239,7 +239,7 @@ font-size: 1.4rem;
 
 }
   .backgroundImage {
-    margin-top: 120px;
+  margin-top: 120px;
   }
   .outline {
     font-size: 9rem;
@@ -275,4 +275,20 @@ font-size: 1.4rem;
   margin-bottom: 1.4rem;
   font-size: 1.2rem;
 }
+}
+@media screen and (min-width:640px){
+ 
+  .input {
+    width: 500px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+  }
+  .backgroundImage {
+     margin-top: 130px;
+  }
+  .note-popup{
+    width: 500px;
+  }
+  .note-down{
+    width: 500px;
+  }
 }

@@ -2,20 +2,45 @@ import { useState, useEffect } from "react";
 import { Login } from "./components/Login";
 import { SignIn } from "./components/SignIn";
 import { MainApp } from "./components/MainApp";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./components/firebase";
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogin = () => {
+    setLoggedIn(true);
+  };
   return (
     <>
       <Router>
-          <Routes>
-            <Route path="/" element={<MainApp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signIn" element={<SignIn />} />
-          </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              isLoggedIn ? <MainApp /> : <Login handleLogin={handleLogin} />
+            }
+          />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/login" element={<Login />} /> 
+          <Route path="/mainapp" element={<MainApp />} /> 
+        </Routes>
       </Router>
     </>
   );

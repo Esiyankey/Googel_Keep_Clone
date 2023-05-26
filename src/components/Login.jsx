@@ -2,12 +2,12 @@ import {useState} from "react";
 import "../Styles/login.scss";
 import { FcGoogle } from "react-icons/all";
 import {auth} from "./firebase"
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -16,9 +16,9 @@ export const Login = () => {
   const Login = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
-     
+      navigate('/mainapp');
     } catch (error) {
+      alert(error.message)
       console.log(error.message);
     }
   };
