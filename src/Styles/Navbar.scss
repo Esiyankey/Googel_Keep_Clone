@@ -6,11 +6,21 @@ body {
   margin: 0;
   padding: 0;
 }
-a{
+a {
   text-decoration: none;
-  color: black;
+  color: #fcd165;
   padding-left: 0.3rem;
 }
+.islogin {
+  border: 1px solid #fcd165;
+  font-size: 1rem;
+  border-radius: 9rem;
+  padding-right: 0.2rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  transition: 0.3s ease;
+}
+
 img {
   height: 60px;
   width: 60px;
@@ -44,13 +54,15 @@ img {
 .right-navbar {
   @include flex-container(space-around, center);
   font-size: 1.5rem;
+  padding-right: 10px;
+  gap: 0.3rem;
 }
 .listicons,
 .BarsIcon {
   display: none;
 }
-.listicons{
-  .cigrid{
+.listicons {
+  .cigrid {
     position: relative;
     right: 1.3rem;
     display: none;
@@ -95,7 +107,7 @@ img {
   .BarsIcon {
     display: flex;
   }
-  
+
   .left-navbar,
   .right-navbar {
     margin: 1rem;

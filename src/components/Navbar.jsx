@@ -63,7 +63,7 @@ export const Navbar = () => {
         <div className="icons">
           <MdOutlineSettings className="icon set" />
         </div>
-        <div className="icons">
+        <div className="icons islogin">
           <Link to="/login"> <a href="">Login</a>  </Link>
         </div>
       </div>
