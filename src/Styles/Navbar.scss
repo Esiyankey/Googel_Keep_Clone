@@ -98,7 +98,10 @@ img {
   .BarsIcon {
     display: flex;
   }
-
+.listicons{
+  position: relative;
+  right: -14px;
+}
   .left-navbar,
   .right-navbar {
     margin: 1rem;
@@ -138,18 +141,11 @@ img {
     position: absolute;
     left: unset;
     top: 25px;
-    right: 80rem;
+    right: 85rem;
   }
+  .islogin {
+    font-size: 1.2rem;
+    position: relative;
+  top: 1rem;  }
 }
-@media screen and (m-width: 800px) {
-  .fasistrix-input {
-    width: 300px;
-    right: 20rem;
-  }
-  .fasistrix-icon {
-    position: absolute;
-    left: unset;
-    top: 25px;
-    right: 30rem;
-  }
-}
+
