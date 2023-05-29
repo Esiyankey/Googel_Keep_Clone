@@ -1,0 +1,11 @@
+$LoginFont:'Work Sans', sans-serif;
+$primary-color:#dfe4e8;
+$primary-color2:#ffb900;
+
+
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+  }
