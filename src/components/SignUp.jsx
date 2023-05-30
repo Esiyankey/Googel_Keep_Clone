@@ -1,19 +1,30 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FcInfo } from "react-icons/fc";
-import { auth } from "../config/firebase";
+import {FiEye,FiEyeOff} from 'react-icons/fi'
+import { auth } from "../config/Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import "../styles/signup.scss";
+import { faBatteryThreeQuarters } from "@fortawesome/free-solid-svg-icons";
 export const SignUp = () => {
   const [Fullname, setFullName] = useState("");
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
+  const [showPassword,setShowPassword]=useState(true);
+ 
 
   //handle Submit
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+//password function
+const handleShowPassword=()=>{
+  setShowPassword(false)
+}
+const handleHidePassword=()=>{
+  setShowPassword(faBatteryThreeQuarters)
+}
 
   //function for signing up
   const signup = async () => {
@@ -53,7 +64,7 @@ export const SignUp = () => {
             required
           />
           <input
-            type="password"
+            type={showPassword?"text":"password"}
             value={Password}
             placeholder="Password"
             onChange={(e) => {
@@ -61,6 +72,7 @@ export const SignUp = () => {
             }}
             required
           />
+          <span>{showPassword?<FiEye className="eye-icon eye" onClick={handleShowPassword}/>:<FiEyeOff className="eye-icon off" onClick={handleHidePassword}/>}</span>
           <div className="progress-bar"></div>
           {/* <div className="choose-country">
             <select

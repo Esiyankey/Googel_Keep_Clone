@@ -1,7 +1,7 @@
 @import "variables";
 
 .Login {
-    font-family: $LoginFont;
+  font-family: $LoginFont;
   @include flex(column, center, center);
   min-height: 100vh;
 }
@@ -21,13 +21,14 @@
     font-weight: 400;
     box-sizing: border-box;
     width: 100%;
+    color: #98a5b1;
   }
   input:focus {
     outline: none;
     background: none;
   }
-  input::placeholder{
-    color:  #98a5b1;
+  input::placeholder {
+    color: #98a5b1;
   }
   text-align: center;
   h3 {
@@ -39,10 +40,10 @@
   }
   p {
     color: #98a5b1;
-   font-size: 0.9rem;
-    a{
-        color: $primary-color2;
-        text-decoration: none;
+    font-size: 0.9rem;
+    a {
+      color: $primary-color2;
+      text-decoration: none;
     }
   }
   .btn {
@@ -55,14 +56,25 @@
     font-weight: 600;
     color: white;
   }
-  h5{
+  h5 {
     text-align: end;
     font-size: 0.9rem;
     font-weight: 400;
     padding-top: 1.2rem;
-    a{
-        text-decoration: none;
-        color: #98a5b1;
+    a {
+      text-decoration: none;
+      color: #98a5b1;
     }
   }
+}
+.eyeon-icon {
+  position: relative;
+  top: -4.1rem;
+  left: 11rem;
+  font-size: 1.2rem;
+  color: #98a5b1;
+}
+.on {
+  position: relative;
+  color: blue;
 }
