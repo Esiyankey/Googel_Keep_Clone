@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {FcInfo } from "react-icons/fc";
+import { FcInfo } from "react-icons/fc";
+import { auth } from "../config/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import "../styles/signup.scss";
 export const SignUp = () => {
   const [Fullname, setFullName] = useState("");
@@ -8,9 +10,22 @@ export const SignUp = () => {
   const [Password, setPassword] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
-  const handleSubmit= (e)=>{
-  e.preventDefault();
-  }
+  //handle Submit
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  //function for signing up
+  const signup = async () => {
+    try {
+      await createUserWithEmailAndPassword(auth, Email, Password);
+    } catch (error) {
+      console.error(error.message);
+      alert(
+        "please fill the required inputs // your email or password is incorrect"
+      );
+    }
+  };
   return (
     <div className="SignUp">
       <div className="signup-container">
@@ -20,7 +35,7 @@ export const SignUp = () => {
         </p>
         <form action="" onSubmit={handleSubmit}>
           <input
-            type="text"FaAngleDown 
+            type="text"
             value={Fullname}
             placeholder="Full name"
             onChange={(e) => {
@@ -67,12 +82,17 @@ export const SignUp = () => {
             </select>
           </div> */}
           <div className="information">
-            <FcInfo className="icon"/> <span>This is limited to countries Payplux operates in</span>
+            <FcInfo className="icon" />{" "}
+            <span>This is limited to countries Payplux operates in</span>
           </div>
         </form>
-        <button className="signup-btn" type="submit"> Sign Up</button>
+        <button className="signup-btn" type="submit" onClick={signup}>
+          {" "}
+          Sign Up
+        </button>
         <h5>
-         <span>By clicking “Sign Up”, I agree to</span>  Terms of Service <span> and</span> Privacy Policy
+          <span>By clicking “Sign Up”, I agree to</span> Terms of Service{" "}
+          <span> and</span> Privacy Policy
         </h5>
       </div>
     </div>
