@@ -1,14 +1,25 @@
 import { useState } from "react";
 import "../styles/Login.scss";
-import { Link } from "react-router-dom";
 import { auth } from "../config/Firebase";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
+import { useNavigate, Link  } from "react-router-dom";
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+
+
+  //navigation
+
+  // firebase.auth().onAuthStateChanged(user => {
+  //   if(user) {
+  //     window.location = 'home.html'; //After successful login, user will be redirected to home.html
+  //   }
+  // });
 
   //handlepassword
   const handleShowPassword = () => {
@@ -23,10 +34,13 @@ export const Login = () => {
     e.preventDefault();
   };
 
+
+  const navigate=useNavigate();
   //Login function
   const Login = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      navigate("/mainpage")
     } catch (error) {
       console.error(error.message);
       alert("email or password is incorrect ");
@@ -51,7 +65,7 @@ export const Login = () => {
             }}
           />
           <input
-            type={showPassword?"text":"password"}
+            type={showPassword?"password":"text"}
             placeholder="Password"
             value={password}
             onChange={(e) => {
@@ -59,10 +73,8 @@ export const Login = () => {
             }}
           />
           <span>
-            {showPassword ? 
-              <FiEye className="eyeon-icon on" onClick={handleShowPassword} />
-             : 
-              <FiEyeOff className="eyeon-icon eye-off" onClick={handleHidePassword} />
+            {showPassword ?  
+              <FiEyeOff className="eyeon-icon eye-off" onClick={handleShowPassword} />:<FiEye className="eyeon-icon on" onClick={handleHidePassword} />
             }
           </span>
           <button className="btn" type="submit" onClick={Login}>
