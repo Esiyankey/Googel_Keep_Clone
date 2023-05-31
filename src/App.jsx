@@ -7,6 +7,7 @@ import { MainPage } from "./components/MainPage";
 function App() {
   const router = createBrowserRouter([
     { path: "/signup", element: <SignUp /> },
+    {path:"/",element:<Login/>},
     {path:"/login",element:<Login/>},
     {path:"/mainpage",element:<MainPage/>}
   ]);

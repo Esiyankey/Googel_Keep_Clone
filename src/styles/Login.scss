@@ -30,6 +30,9 @@
   input::placeholder {
     color: #98a5b1;
   }
+  input:focus::placeholder {
+    transform: translateY(-1rem);
+  }
   text-align: center;
   h3 {
     color: #18203c;
@@ -55,6 +58,11 @@
     font-size: 1rem;
     font-weight: 600;
     color: white;
+    transition: 0.5s ease;
+    cursor: pointer;
+  }
+  .btn:hover{
+    background-color: #f5bc20;
   }
   h5 {
     text-align: end;
@@ -67,14 +75,21 @@
     }
   }
 }
-.eyeon-icon {
+
+.password-input {
   position: relative;
-  top: -4.1rem;
-  left: 11rem;
-  font-size: 1.2rem;
-  color: #98a5b1;
+  .btn-eye {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 40%;
+    left: 90%;
+    font-size: 1rem;
+    color: #98a5b1;
+  }
 }
+
 .on {
-  position: relative;
   color: blue;
 }

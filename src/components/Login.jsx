@@ -1,17 +1,15 @@
 import { useState } from "react";
-import "../styles/Login.scss";
+import "../styles/login.scss";
 import { auth } from "../config/Firebase";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
-import { useNavigate, Link  } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
 
   //navigation
 
@@ -34,13 +32,12 @@ export const Login = () => {
     e.preventDefault();
   };
 
-
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //Login function
   const Login = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/mainpage")
+      navigate("/mainpage");
     } catch (error) {
       console.error(error.message);
       alert("email or password is incorrect ");
@@ -64,19 +61,28 @@ export const Login = () => {
               setEmail(e.target.value);
             }}
           />
-          <input
-            type={showPassword?"password":"text"}
-            placeholder="Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <span>
-            {showPassword ?  
-              <FiEyeOff className="eyeon-icon eye-off" onClick={handleShowPassword} />:<FiEye className="eyeon-icon on" onClick={handleHidePassword} />
-            }
-          </span>
+          <div className="password-input">
+            <input
+              type={showPassword ? "password" : "text"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <button
+              className="btn-eye"
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
+            >
+              {showPassword ? (
+                <FiEyeOff className="eyeon-icon eye-off" />
+              ) : (
+                <FiEye className="eyeon-icon on" />
+              )}
+            </button>
+          </div>
           <button className="btn" type="submit" onClick={Login}>
             Log In
           </button>

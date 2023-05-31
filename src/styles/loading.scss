@@ -1,0 +1,23 @@
+
+.Loader{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+.spinner {
+    width: 11.2px;
+    height: 11.2px;
+    border-radius: 11.2px;
+    box-shadow: 28px 0px 0 0 #ffbb0023, 22.7px 16.5px 0 0 #ffbb005b, 8.68px 26.6px 0 0 #ffbb0085, -8.68px 26.6px 0 0 #ffbb00d5, -22.7px 16.5px 0 0 #ffb900;
+    animation: spinner-b87k6z 1s infinite linear;
+ }
+ 
+ @keyframes spinner-b87k6z {
+    to {
+       transform: rotate(360deg);
+    }
+ }

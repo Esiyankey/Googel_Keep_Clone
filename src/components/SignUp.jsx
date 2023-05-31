@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CgDanger } from "react-icons/cg";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { auth } from "../config/Firebase";
@@ -80,12 +80,12 @@ export const SignUp = () => {
     return colorRange[colorRange.length - 1].color;
   };
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   //function for signing up
   const signup = async () => {
     try {
       await createUserWithEmailAndPassword(auth, Email, Password);
-      navigate("/mainpage")
+      navigate("/mainpage");
     } catch (error) {
       console.error(error.message);
       alert(
@@ -119,24 +119,31 @@ export const SignUp = () => {
             }}
             required
           />
-
-          <input
-            type={showPassword ? "password" : "text"}
-            value={Password}
-            placeholder="Password"
-            onChange={(e) => checkPasswordStrength(e.target.value)}
-            required
-            onFocus={() => {
-              setFocused(true);
-            }}
-          />
-          <span>
-            {showPassword ? (
-              <FiEyeOff className="eye-icon off" onClick={handleShowPassword} />
-            ):(
-              <FiEye className="eye-icon eye" onClick={handleHidePassword} />
-            ) }
-          </span>
+          <div className="password-input">
+            <input
+              type={showPassword ? "password" : "text"}
+              value={Password}
+              placeholder="Password"
+              onChange={(e) => checkPasswordStrength(e.target.value)}
+              required
+              onFocus={() => {
+                setFocused(true);
+              }}
+              onBlur={() => {setFocused(false)}}
+            />
+            <button
+              className="btn"
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
+            >
+              {showPassword ? (
+                <FiEyeOff className="eye-icon off" />
+              ) : (
+                <FiEye className="eye-icon eye" />
+              )}
+            </button>
+          </div>
           <div className="progress-bar">
             <div
               style={{
