@@ -1,15 +1,15 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { Loading } from './Loading'
+import React from "react";
+import { Link } from "react-router-dom";
+import { Navbar } from "./Navbar";
 
 export const MainPage = () => {
   return (
     <>
-    <Loading/>
-    <div>
-      MainPage
+   <Navbar/>
+      {/* <div>
+        MainPage
         <Link to="/login">login</Link>
-    </div>
+      </div> */}
     </>
-  )
-}
+  );
+};

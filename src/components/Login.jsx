@@ -3,29 +3,17 @@ import "../styles/login.scss";
 import { auth } from "../config/Firebase";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate, Link } from "react-router-dom";
+import { Loading } from "./Loading";
 
 export const Login = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  //navigation
-
-  // firebase.auth().onAuthStateChanged(user => {
-  //   if(user) {
-  //     window.location = 'home.html'; //After successful login, user will be redirected to home.html
-  //   }
-  // });
-
-  //handlepassword
-  const handleShowPassword = () => {
-    setShowPassword(false);
-  };
-  const handleHidePassword = () => {
-    setShowPassword(true);
-  };
+  
 
   //handle submit
   const handleSubmit = (e) => {
@@ -36,12 +24,16 @@ export const Login = () => {
   //Login function
   const Login = async () => {
     try {
+      setIsLoading(true)
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/mainpage");
     } catch (error) {
+      setIsLoading(false)
       console.error(error.message);
-      alert("email or password is incorrect ");
+      setError("incorrect password or email");
     }
+    // finally{
+    // }
   };
 
   return (
@@ -84,13 +76,16 @@ export const Login = () => {
             </button>
           </div>
           <button className="btn" type="submit" onClick={Login}>
-            Log In
+          {isLoading? <Loading/>:"Log In"}
           </button>
+          {error && <div className="error-message">{error}</div>}
         </form>
+
         <h5>
           {" "}
           <a href="#">Forgot Password?</a>{" "}
         </h5>
+        
       </div>
     </div>
   );

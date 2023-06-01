@@ -1,23 +1,72 @@
 
 .Loader{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
+    position: relative;
+    left:10rem;
 }
-.spinner {
-    width: 11.2px;
-    height: 11.2px;
-    border-radius: 11.2px;
-    box-shadow: 28px 0px 0 0 #ffbb0023, 22.7px 16.5px 0 0 #ffbb005b, 8.68px 26.6px 0 0 #ffbb0085, -8.68px 26.6px 0 0 #ffbb00d5, -22.7px 16.5px 0 0 #ffb900;
-    animation: spinner-b87k6z 1s infinite linear;
- }
+// .spinner {
+//     width: 6px;
+//     height: 6px;
+//     border-radius: 11.2px;
+//     box-shadow: 28px 0px 0 0 #ffffff44, 22.7px 16.5px 0 0 #ffffff75, 8.68px 26.6px 0 0 #ffffffa8, -8.68px 26.6px 0 0 #ffffffda, -22.7px 16.5px 0 0 #ffffff;
+//     animation: spinner-b87k6z 1s infinite linear;
+//  }
  
- @keyframes spinner-b87k6z {
-    to {
-       transform: rotate(360deg);
-    }
- }
+//  @keyframes spinner-b87k6z {
+//     to {
+//        transform: rotate(360deg);
+//     }
+//  }
+
+
+ 
+// .spinner {
+//    width: 25px;
+//    height: 25px;
+//    display: grid;
+//    border-radius: 50%;
+//    -webkit-mask: radial-gradient(farthest-side,#ffffff75 40%,#ffffff 41%);
+//    background: linear-gradient(0deg ,#ffffffda 50%,#ffffff 0) center/4.5px 100%,
+//         linear-gradient(90deg,#ffffffa8 50%,#ffffff 0) center/100% 4.5px;
+//    background-repeat: no-repeat;
+//    animation: spinner-d3o0rx 1s infinite steps(12);
+// }
+
+// .spinner::before,
+// .spinner::after {
+//    content: "";
+//    grid-area: 1/1;
+//    border-radius: 50%;
+//    background: inherit;
+//    opacity: 0.915;
+//    transform: rotate(30deg);
+// }
+
+// .spinner::after {
+//    opacity: 0.83;
+//    transform: rotate(60deg);
+// }
+
+// @keyframes spinner-d3o0rx {
+//    100% {
+//       transform: rotate(1turn);
+//    }
+// }
+
+.spinner {
+   width: 25px;
+   height: 25px;
+   border-radius: 50%;
+   padding: 1.1px;
+   background: conic-gradient(#0000 10%,#ffffff) content-box;
+   -webkit-mask: repeating-conic-gradient(#0000 0deg,#000 1deg 20deg,#0000 21deg 36deg),
+        radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 calc(100% - 9px));
+   -webkit-mask-composite: destination-in;
+   mask-composite: intersect;
+   animation: spinner-d55elj 1s infinite steps(10);
+}
+
+@keyframes spinner-d55elj {
+   to {
+      transform: rotate(1turn);
+   }
+}

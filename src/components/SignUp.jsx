@@ -4,8 +4,8 @@ import { CgDanger } from "react-icons/cg";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { auth } from "../config/Firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-
 import "../styles/signup.scss";
+import { Loading } from "./Loading";
 
 export const SignUp = () => {
   const [Fullname, setFullName] = useState("");
@@ -14,6 +14,7 @@ export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(true);
   const [strength, setStrength] = useState(0);
   const [focused, setFocused] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   //check password strength
 
@@ -43,6 +44,7 @@ export const SignUp = () => {
 
     // Update the password strength level
     setStrength((strengthCount / Object.keys(requirements).length) * 100);
+    setFocused(false);
   };
 
   //handle Submit
@@ -50,13 +52,6 @@ export const SignUp = () => {
     e.preventDefault();
   };
 
-  //password function
-  const handleShowPassword = () => {
-    setShowPassword(false);
-  };
-  const handleHidePassword = () => {
-    setShowPassword(true);
-  };
   //getting the color
 
   const getColor = () => {
@@ -84,6 +79,7 @@ export const SignUp = () => {
   //function for signing up
   const signup = async () => {
     try {
+      setIsLoading(true);
       await createUserWithEmailAndPassword(auth, Email, Password);
       navigate("/mainpage");
     } catch (error) {
@@ -91,6 +87,8 @@ export const SignUp = () => {
       alert(
         "please fill the required inputs // your email or password is incorrect"
       );
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
@@ -129,7 +127,7 @@ export const SignUp = () => {
               onFocus={() => {
                 setFocused(true);
               }}
-              onBlur={() => {setFocused(false)}}
+              
             />
             <button
               className="btn"
@@ -195,6 +193,7 @@ export const SignUp = () => {
           <span>By clicking “Sign Up”, I agree to</span> Terms of Service{" "}
           <span> and</span> Privacy Policy
         </h5>
+        {isLoading && <Loading />}
       </div>
     </div>
   );

@@ -1,0 +1,12 @@
+
+@import 'variables';
+.Navbar{
+    @include flex(row,space-between,center);
+    height: 50px;
+    border-bottom: 1px solid $primary-color;
+    width: 100%;
+    .right-Navbar,.Left-Navbar{
+        @include flex(row,space-between,center);
+        gap: 1rem;
+    }
+}
