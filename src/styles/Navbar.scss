@@ -1,12 +1,91 @@
+@import "variables";
 
-@import 'variables';
-.Navbar{
-    @include flex(row,space-between,center);
-    height: 50px;
-    border-bottom: 1px solid $primary-color;
-    width: 100%;
-    .right-Navbar,.Left-Navbar{
-        @include flex(row,space-between,center);
-        gap: 1rem;
+//Navbar
+.Navbar {
+  @include flex(row, space-between, center);
+  height: 70px;
+  border-bottom: 1px solid $primary-color;
+  width: 100%;
+  overflow: hidden;
+  color: #5f6368;
+  //Navbar divisions
+  .right-Navbar,
+  .Left-Navbar {
+    @include flex(row, space-between, center);
+  }
+
+  //right Navbar
+  .right-Navbar {
+    font-size: 1.5rem;
+    gap: 1.3rem;
+    padding-right: 1rem;
+   
+    //Grid
+    .Grid {
+      display: flex;
     }
+  }
+
+  //left navbar
+  .Left-Navbar {
+    font-size: 1.2rem;
+    h4 {
+      font-family: "Product Sans", Arial, sans-serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: #5f6368;
+    }
+  }
+
+  //Image
+
+  .keep-image {
+    width: 3.5rem;
+  }
+  input {
+    border-radius: 0.6rem;
+    width: 800px;
+    background: none;
+    border: 1px solid #f0f3f4;
+    background-color: #f0f3f4;
+    font-size: 0.9rem;
+    padding: 1rem 1rem 1rem 2.3rem;
+  }
+  input:focus {
+    outline: none;
+    background-color: white;
+    box-shadow: 1px 0.6px 0.4px rgba(100, 98, 98, 0.24);
+  }
+  .icon {
+    font-size: 1.3rem;
+    position: relative;
+    left: 1.8rem;
+    top: 0.2rem;
+  }
+  .drop-down {
+    display: flex;
+}
+.btn {
+  border: none;
+  background: none;
+  font-size: 1.3rem;
+  display: flex;
+  color:#818283;
+}
+
+  .log-out {
+    background-color: $primary-color2;
+    width: 6rem;
+    height: 2rem;
+    position: fixed;
+    right: 1rem;
+    top: 5rem;
+    color: white;
+    font-size: 1rem;
+    text-align: center;
+    padding-top: 0.4rem;
+    border-radius: 0.4rem;
+    font-family: Roboto;
+    font-weight: 600;
+  }
 }

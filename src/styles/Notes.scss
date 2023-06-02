@@ -1,0 +1,83 @@
+@import "variables";
+
+.Notes {
+  @include flex(row, center, center);
+  margin-top: 5rem;
+  .input {
+    z-index: 0;
+    display: flex;
+    position: relative;
+    input {
+      padding: 1rem;
+      border-radius: 0.5rem;
+      width: 46rem;
+      font-size: 1.2rem;
+      border: 1px solid $primary-color;
+    }
+    input:focus {
+      outline: none;
+      box-shadow: 1px 0.6px 0.2px rgba(100, 98, 98, 0.24);
+    }
+    .input-icons {
+      position: absolute;
+      left: 90%;
+      top: 35%;
+      font-size: 1.3rem;
+      gap: 1rem;
+      display: flex;
+      color: #818283;
+    }
+  }
+  .Take-notes {
+    border: 1px solid $primary-color;
+    width: 46rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: 0.5s ease;
+    transform: translateY(-3.7rem);
+    z-index: 10;
+    background-color: white;
+    input {
+      font-size: 1.2rem;
+      display: block;
+      width: 40rem;
+      border: none;
+      padding: 0.8rem;
+    }
+    input:focus{
+        outline: none;
+    }
+    .pin {
+      @include flex(row, space-between, center);
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+    }
+    .btn {
+      border: none;
+      background: none;
+      font-size: 1.3rem;
+      color: #818283;
+    }
+    .icons{
+        @include flex(row,space-between,center);
+        padding:0 0.6rem;
+        margin-top: 0.5rem;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      padding: 0.4rem 0.7rem;
+      color: #818283;
+    }
+    .close-btn:hover{
+        background-color: $primary-color;
+    }
+.buttons{
+   display: flex;
+   .image{
+    display: block;
+   }
+}
+  }
+}
