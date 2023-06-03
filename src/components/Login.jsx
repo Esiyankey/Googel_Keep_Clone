@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/login.scss";
+import "../styles/Login.scss";
 import { auth } from "../config/Firebase";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { signInWithEmailAndPassword } from "firebase/auth";
