@@ -19,7 +19,7 @@ export const Navbar = () => {
     const LogOut = async () => {
       try {
         await signOut(auth);
-        navigate("/login")
+        navigate("/signup")
       } catch (error) {
         alert("error loggin out");
         console.log(error);
