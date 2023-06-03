@@ -1,15 +1,32 @@
 import { useState } from "react";
 import { FaBars, FaSistrix } from "react-icons/fa";
 import KeepLogo2 from "../assets/keep-logo2.png";
-import { MdRefresh} from "react-icons/md";
-// import { IoGridOutline } from "react-icons/io";
+import { MdRefresh } from "react-icons/md";
+import { auth } from "../config/Firebase";
+import { signOut } from "firebase/auth";
 import { CiGrid2H } from "react-icons/ci";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import "../styles/Navbar.scss";
+import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   const [search, setSearch] = useState("");
   const [logOut, setLogOut] = useState(false);
+
+  const navigate = useNavigate();
+  //Log Out
+  const handleLogOut = () => {
+    const LogOut = async () => {
+      try {
+        await signOut(auth);
+        navigate("/login")
+      } catch (error) {
+        alert("error loggin out");
+        console.log(error);
+      }
+    };
+    LogOut();
+  };
 
   //Drop Down
 
@@ -50,7 +67,11 @@ export const Navbar = () => {
           <button className="btn" onClick={showDropdown}>
             <BsFillGrid3X3GapFill />
           </button>
-          {logOut && <div className="log-out">Log Out</div>}
+          {logOut && (
+            <div className="log-out" onClick={handleLogOut}>
+              Log Out
+            </div>
+          )}
         </div>
       </div>
     </div>
