@@ -8,7 +8,7 @@
     display: flex;
     position: relative;
     input {
-      padding: 1rem;
+      padding: 0.8rem;
       border-radius: 0.5rem;
       width: 46rem;
       font-size: 1.2rem;
@@ -42,14 +42,13 @@
       display: block;
       width: 40rem;
       border: none;
-      padding: 0.8rem;
     }
-    input:focus{
-        outline: none;
+    input:focus {
+      outline: none;
     }
     .pin {
       @include flex(row, space-between, center);
-      margin-bottom: 0.7rem;
+      margin-bottom: 1rem;
       font-size: 1.3rem;
     }
     .btn {
@@ -58,10 +57,10 @@
       font-size: 1.3rem;
       color: #818283;
     }
-    .icons{
-        @include flex(row,space-between,center);
-        padding:0 0.6rem;
-        margin-top: 0.5rem;
+    .icons {
+      @include flex(row, space-between, center);
+      padding: 0 0.6rem;
+      margin-top: 0.5rem;
     }
     .close-btn {
       background: none;
@@ -70,17 +69,18 @@
       padding: 0.4rem 0.7rem;
       color: #818283;
     }
-    .close-btn:hover{
-        background-color: $primary-color;
+    .close-btn:hover {
+      background-color: $primary-color;
     }
-.buttons{
-   display: flex;
-   .image{
-    display: block;
-   }
-}
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      .image {
+        display: block;
+      }
+    }
   }
-  .Take-Notes{
+  .Take-Notes {
     border: 1px solid $primary-color;
     width: 46rem;
     padding: 1rem;
@@ -94,42 +94,81 @@
       display: block;
       width: 40rem;
       border: none;
-      padding: 0.8rem;
     }
-    input:focus{
-        outline: none;
+    input:focus {
+      outline: none;
     }
     .pin {
       @include flex(row, space-between, center);
-      margin-bottom: 0.7rem;
-      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
     }
+
     .btn {
       border: none;
       background: none;
       font-size: 1.3rem;
       color: #818283;
+      .delete {
+        position: relative;
+      }
     }
-    .icons{
-        @include flex(row,space-between,center);
-        padding:0 0.6rem;
-        margin-top: 0.5rem;
+    .icons {
+      @include flex(row, space-between, center);
+      margin-top: 2rem;
+      opacity: 0;
+      transition: 0.5s ease-out;
     }
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      padding: 0.4rem 0.7rem;
-      color: #818283;
+
+    .buttons {
+      display: flex;
+      gap: 1rem;
+      .image {
+        display: block;
+      }
     }
-    .close-btn:hover{
+
+    .bspin {
+      opacity: 0;
+      font-size: 1.4rem;
+      transition: 0.5s ease-out;
+    }
+    .Delete {
+      background-color: rgba(255, 255, 255, 0.993);
+      border: 1px solid $primary-color;
+      width: 8rem;
+      height: 5rem;
+      position: absolute;
+      // right: 1rem;
+      // top: 5rem;
+      font-size: 1rem;
+      text-align: center;
+      border-radius: 0.4rem;
+      font-family: Roboto;
+      font-weight: 600;
+      padding-left: 0;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      list-style: none;
+
+      button {
+        margin: 0.5rem 0;
+        border: none;
+        background: none;
+        font-size: 1rem;
+        font-weight: 400;
+        font-family: Roboto;
+        padding: 0.2rem;
+      }
+      button:hover {
         background-color: $primary-color;
+      }
     }
-.buttons{
-   display: flex;
-   .image{
-    display: block;
-   }
   }
 }
+.Take-Notes:hover .icons,
+.Take-Notes:hover .bspin{
+  opacity: 1;
 }
