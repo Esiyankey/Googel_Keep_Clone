@@ -15,7 +15,7 @@ export const SignUp = () => {
   const [strength, setStrength] = useState(0);
   const [focused, setFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [error,setError]=useState("")
   //check password strength
 
   const checkPasswordStrength = (value) => {
@@ -84,9 +84,7 @@ export const SignUp = () => {
       navigate("/mainpage");
     } catch (error) {
       console.error(error.message);
-      alert(
-        "please fill the required inputs // your email or password is incorrect"
-      );
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -187,13 +185,13 @@ export const SignUp = () => {
         </form>
         <button className="signup-btn" type="submit" onClick={signup}>
           {" "}
-          Sign Up
+        {isLoading? <Loading/>:"Sign Up"}
         </button>
+        {error && <div className="error-message">{error}</div>}
         <h5>
           <span>By clicking “Sign Up”, I agree to</span> Terms of Service{" "}
           <span> and</span> Privacy Policy
         </h5>
-        {isLoading && <Loading />}
       </div>
     </div>
   );

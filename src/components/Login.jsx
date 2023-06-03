@@ -30,7 +30,7 @@ export const Login = () => {
     } catch (error) {
       setIsLoading(false)
       console.error(error.message);
-      setError("incorrect password or email");
+      setError(error.message);
     }
     // finally{
     // }

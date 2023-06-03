@@ -18,8 +18,8 @@ export const Navbar = () => {
   const handleLogOut = () => {
     const LogOut = async () => {
       try {
-        await signOut(auth);
-        navigate("/signup")
+        await auth.signOut();
+        navigate("/login")
       } catch (error) {
         alert("error loggin out");
         console.log(error);
