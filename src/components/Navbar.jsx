@@ -28,6 +28,11 @@ export const Navbar = () => {
     LogOut();
   };
 
+//refresh
+const refreshPage = () => {
+  window.location.reload();
+};
+
   //Drop Down
 
   const showDropdown = () => {
@@ -54,7 +59,7 @@ export const Navbar = () => {
         />
       </div>
       <div className="right-Navbar">
-        <button className="btn">
+        <button className="btn" onClick={refreshPage}>
           <MdRefresh />
         </button>
         <div className="Grid" type="button">
