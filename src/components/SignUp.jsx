@@ -81,7 +81,7 @@ export const SignUp = () => {
     try {
       setIsLoading(true);
       await createUserWithEmailAndPassword(auth, Email, Password);
-      navigate("/mainpage");
+      navigate("/home");
     } catch (error) {
       console.error(error.message);
       setError(error.message);
@@ -185,6 +185,7 @@ export const SignUp = () => {
         </form>
         <button className="signup-btn" type="submit" onClick={signup}>
           {" "}
+
         {isLoading? <Loading/>:"Sign Up"}
         </button>
         {error && <div className="error-message">{error}</div>}

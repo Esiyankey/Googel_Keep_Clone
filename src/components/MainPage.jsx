@@ -9,10 +9,6 @@ export const MainPage = () => {
     <>
    <Navbar/>
    <Section/>
-      {/* <div>
-        MainPage
-        <Link to="/login">login</Link>
-      </div> */}
     </>
   );
 };

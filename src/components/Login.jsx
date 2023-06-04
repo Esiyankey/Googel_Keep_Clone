@@ -26,7 +26,7 @@ export const Login = () => {
     try {
       setIsLoading(true)
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/mainpage");
+      navigate("/home");
     } catch (error) {
       setIsLoading(false)
       console.error(error.message);

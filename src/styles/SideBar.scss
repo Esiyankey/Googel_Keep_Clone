@@ -7,31 +7,45 @@
   top: 80px;
   left: 0;
   z-index: 10;
+  transition: 0.3s ease-out;
   .icons-container {
     gap: 1rem;
-    padding-top: 2rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
   }
   .btn {
-    background: none;
-    border: none;
-    font-size: 1.7rem;
-    height: 3rem;
+    text-decoration: none;
+      h6 {
+          display: none;
+        }
+        background: none;
+        border: none;
+        .icons{
+        font-size: 1.7rem;
+        height: 3rem;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
+    }
     .icon {
-        padding-left:0.5rem ;
+      padding-left: 2rem;
       position: relative;
       top: 0.1rem;
-      display: flex;
-      justify-content: flex-start;
       color: #5e6368;
-     
     }
   }
-  .btn:hover {
-    width: 17.5rem;
+  .icons:hover {
+    width: 18.5rem;
     border-radius: 0 100px 100px 0;
     background-color: $primary-color;
+    transition: 0.6s ease-out;
+    h6 {
+      display: flex;
+      font-size: 1rem;
+      color:#5e6368;
+    }
   }
 }
 .SideBar-Container:hover {
