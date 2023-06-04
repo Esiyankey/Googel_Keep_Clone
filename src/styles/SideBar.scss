@@ -1,0 +1,39 @@
+@import "variables";
+
+.SideBar-Container {
+  width: 5rem;
+  height: 100%;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  z-index: 10;
+  .icons-container {
+    gap: 1rem;
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .btn {
+    background: none;
+    border: none;
+    font-size: 1.7rem;
+    height: 2.8rem;
+    .icon {
+        padding-left:0.5rem ;
+      position: relative;
+      top: 0.1rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+  }
+  .btn:hover {
+    width: 17.5rem;
+    border-radius: 0 100px 100px 0;
+    background-color: $primary-color;
+  }
+}
+.SideBar-Container:hover {
+  width: 18rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  background-color: white;
+}

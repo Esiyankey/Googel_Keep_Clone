@@ -1,7 +1,21 @@
-import React from 'react'
+import { useState } from "react";
+import '../styles/SideBar.scss'
+import {
+  MdOutlineLightbulb,
+  MdLabelOutline,
+  MdOutlineArchive,
+} from "react-icons/md";
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 export const SideBar = () => {
-  return (
-    <div>SideBar</div>
-  )
-}
+  return (<div className="Side-Bar">
+    <div className="SideBar-Container">
+        <div className="icons-container">
+            <button className="btn"><MdOutlineLightbulb className="icon"/></button>
+            <button className="btn"><MdLabelOutline className="icon"/></button>
+            <button className="btn"><MdOutlineArchive className="icon"/></button>
+            <button className="btn"><RiDeleteBin6Line className="icon"/></button>
+        </div>
+    </div>
+  </div>)
+};
