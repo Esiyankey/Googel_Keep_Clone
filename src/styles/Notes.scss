@@ -10,9 +10,10 @@
     input {
       padding: 0.8rem;
       border-radius: 0.5rem;
-      width: 40rem;
+      width: 42rem;
       font-size: 1.2rem;
       border: 1px solid $primary-color;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
     input:focus {
       outline: none;
@@ -30,13 +31,14 @@
   }
   .Take-notes {
     border: 1px solid $primary-color;
-    width: 40rem;
+    width: 42rem;
     padding: 1rem;
     border-radius: 0.5rem;
     transition: 0.5s ease;
     transform: translateY(-3.7rem);
     z-index: 10;
     background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     input {
       font-size: 1.2rem;
       display: block;
@@ -82,7 +84,7 @@
   }
   .Take-Notes {
     border: 1px solid $primary-color;
-    width: 40rem;
+    width: 42rem;
     padding: 1rem;
     border-radius: 0.5rem;
     transition: 0.5s ease;
