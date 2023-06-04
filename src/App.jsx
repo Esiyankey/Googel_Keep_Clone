@@ -9,7 +9,8 @@ function App() {
     { path: "/signup", element: <SignUp /> },
     {path:"/",element:<Login/>},
     {path:"/login",element:<Login/>},
-    {path:"/mainpage",element:<MainPage/>}
+    {path:"/mainpage",element:<MainPage/>},
+    
   ]);
 
   return (
