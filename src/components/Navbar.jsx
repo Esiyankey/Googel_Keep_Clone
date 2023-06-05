@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FaBars, FaSistrix } from "react-icons/fa";
 import KeepLogo2 from "../assets/keep-logo2.png";
-import { MdRefresh } from "react-icons/md";
 import { auth } from "../config/Firebase";
 import { signOut } from "firebase/auth";
 import { CiGrid2H } from "react-icons/ci";

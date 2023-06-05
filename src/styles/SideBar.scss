@@ -29,6 +29,8 @@
         align-items: center;
         gap: 4rem;
     }
+
+    
     .icon {
       padding-left: 2rem;
       position: relative;
@@ -36,6 +38,16 @@
       color: #5e6368;
     }
   }
+  .icon-active.active{
+    margin-left:2rem ;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    background-color: $primary-color2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
   .icons:hover {
     width: 17.5rem;
     border-radius: 0 100px 100px 0;

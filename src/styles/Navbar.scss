@@ -5,7 +5,7 @@
   @include flex(row, space-between, center);
   height: 70px;
   border-bottom: 1px solid $primary-color;
-  width: 100%;
+  width: 100vw;
   overflow: hidden;
   color: #5f6368;
   //Navbar divisions
@@ -17,8 +17,7 @@
   //right Navbar
   .right-Navbar {
     font-size: 1.5rem;
-    gap: 1.3rem;
-    padding-right: 1rem;
+    padding-right: 2rem;
    
     //Grid
     .Grid {

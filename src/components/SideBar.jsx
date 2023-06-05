@@ -13,15 +13,17 @@ export const SideBar = () => {
     <div className="Side-Bar">
       <div className="SideBar-Container">
         <div className="icons-container">
-          <Link  to='/home/notes' className="btn">
-            <div className="icons">
+          <Link  to='/home/notes' className="btn ">
+            <div className="icons ">
+               
               <MdOutlineLightbulb className="icon" />
               <h6>Home</h6>
+              
             </div>
           </Link>
           <Link to='/home/label' className="btn">
             <div className="icons">
-              <MdLabelOutline className="icon" />
+              <MdLabelOutline className="icon active" />
               <h6>Label</h6>
             </div>
           </Link>
