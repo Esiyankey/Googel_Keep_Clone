@@ -71,6 +71,15 @@
   font-size: 1.3rem;
   display: flex;
   color:#818283;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn:hover{
+  background-color: $primary-color;
 }
 
   .log-out {
@@ -87,5 +96,6 @@
     border-radius: 0.4rem;
     font-family: Roboto;
     font-weight: 600;
+    cursor: pointer;
   }
 }

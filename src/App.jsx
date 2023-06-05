@@ -18,7 +18,7 @@ function App() {
     {path:"/home",element:<Section/>,
     children: [
       {
-        path: 'notes',
+        // path: "notes",
         index: true,
         element: <Notes/>,
       }, 

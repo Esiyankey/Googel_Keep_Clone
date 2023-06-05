@@ -59,9 +59,6 @@ const refreshPage = () => {
         />
       </div>
       <div className="right-Navbar">
-        <button className="btn" onClick={refreshPage}>
-          <MdRefresh />
-        </button>
         <div className="Grid" type="button">
           {/* <IoGridOutline /> */}
           <button className="btn">
