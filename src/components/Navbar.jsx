@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FaBars, FaSistrix } from "react-icons/fa";
 import KeepLogo2 from "../assets/keep-logo2.png";
 import { auth } from "../config/Firebase";
 import { signOut } from "firebase/auth";
 import { CiGrid2H } from "react-icons/ci";
+import { BsGrid } from "react-icons/bs";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import "../styles/Navbar.scss";
 import { useNavigate } from "react-router-dom";
@@ -11,6 +12,21 @@ import { useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const [search, setSearch] = useState("");
   const [logOut, setLogOut] = useState(false);
+  const [active,setActive] =useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      setActive(scrollTop > 70);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const navigate = useNavigate();
   //Log Out
@@ -18,7 +34,7 @@ export const Navbar = () => {
     const LogOut = async () => {
       try {
         await auth.signOut();
-        navigate("/login")
+        navigate("/login");
       } catch (error) {
         alert("error loggin out");
         console.log(error);
@@ -27,10 +43,10 @@ export const Navbar = () => {
     LogOut();
   };
 
-//refresh
-const refreshPage = () => {
-  window.location.reload();
-};
+  //refresh
+  const refreshPage = () => {
+    window.location.reload();
+  };
 
   //Drop Down
 
@@ -38,7 +54,7 @@ const refreshPage = () => {
     setLogOut(!logOut);
   };
   return (
-    <div className="Navbar">
+    <div className={active?"Navbar active":"Navbar"}>
       <div className="Left-Navbar">
         <button className="btn">
           <FaBars />
@@ -59,8 +75,9 @@ const refreshPage = () => {
       </div>
       <div className="right-Navbar">
         <div className="Grid" type="button">
-          {/* <IoGridOutline /> */}
-          <button className="btn">
+          
+          <button className="btn btn-grid">
+          <BsGrid className="grid"/>
             <CiGrid2H />
           </button>
         </div>

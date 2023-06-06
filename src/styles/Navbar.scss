@@ -1,5 +1,9 @@
 @import "variables";
 
+body{
+  margin: 0;
+  padding: 0;
+}
 //Navbar
 .Navbar {
   @include flex(row, space-between, center);
@@ -18,7 +22,7 @@
   .right-Navbar {
     font-size: 1.5rem;
     padding-right: 2rem;
-   
+
     //Grid
     .Grid {
       display: flex;
@@ -63,23 +67,33 @@
   }
   .drop-down {
     display: flex;
-}
-.btn {
-  border: none;
-  background: none;
-  font-size: 1.3rem;
-  display: flex;
-  color:#818283;
-  height: 3rem;
-  width: 3rem;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.btn:hover{
-  background-color: $primary-color;
-}
+  }
+  .btn {
+    border: none;
+    background: none;
+    font-size: 1.3rem;
+    display: flex;
+    color: #818283;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn:hover {
+    background-color: $primary-color;
+  }
+  .btn-grid{
+    position: relative;
+    
+    // display: block;
+  }
+  .grid {
+    position: absolute;
+    left: 1rem;
+    opacity: 0;
+  }
 
   .log-out {
     background-color: $primary-color2;
@@ -96,5 +110,18 @@
     font-family: Roboto;
     font-weight: 600;
     cursor: pointer;
+  }
+}
+
+.Navbar.active {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
+  z-index: 20;
+}
+@media screen and (min-width: 640px) and (max-width: 840px) {
+  input {
+    width: 400px !important;
   }
 }
