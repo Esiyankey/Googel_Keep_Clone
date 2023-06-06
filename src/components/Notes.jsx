@@ -4,7 +4,13 @@ import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
 import { MdOutlineArchive } from "react-icons/md";
 import "../styles/Notes.scss";
-import { collection, getDocs, addDoc,deleteDoc,doc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "../config/Firebase";
 import { SingleNotes } from "./SingleNotes";
 
@@ -13,21 +19,32 @@ export const Notes = () => {
   const [text, setText] = useState("");
   const [showNotes, setShowNotes] = useState(false);
   const [Notes, setNotes] = useState([]);
+  const [closeButtonText, setCloseButtonText] = useState("Close");
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setTitle(value);
+
+    if (value.length > 0) {
+      setCloseButtonText("Create");
+    } else {
+      setCloseButtonText("Close");
+    }
+  };
   //Read Data from firestore
 
   useEffect(() => {
-  const FetchNotes = async () => {
-    const querySnapshot = await getDocs(collection(db, "Notes"));
-    const NotesArray = [];
-    querySnapshot.forEach((doc) => {
-      NotesArray.push({ ...doc.data(), id: doc.id });
-      console.log(`${doc.id} => ${doc.data()}`);
-    });
-    setNotes(NotesArray);
-  };
+    const FetchNotes = async () => {
+      const querySnapshot = await getDocs(collection(db, "Notes"));
+      const NotesArray = [];
+      querySnapshot.forEach((doc) => {
+        NotesArray.push({ ...doc.data(), id: doc.id });
+        console.log(`${doc.id} => ${doc.data()}`);
+      });
+      setNotes(NotesArray);
+    };
     FetchNotes();
   }, []);
-
 
   //delete note
   const deleteNote = async (noteId) => {
@@ -40,37 +57,35 @@ export const Notes = () => {
     }
   };
 
-
   //focus and unfocus
   const handleFocus = () => {
     setShowNotes(true);
   };
-
-
+  const handleBlur = () => {
+    if (title === "" && text === "") {
+      setShowNotes(false);
+    }
+  };
   //create notes
   const AddNotes = async () => {
+    if (title.trim() !== "" || text.trim() !== "") {
       try {
         const docRef = await addDoc(collection(db, "Notes"), {
           Title: title,
-          Text: text
+          Text: text,
         });
         const newNote = { id: docRef.id, Title: title, Text: text };
         setNotes((prevNotes) => [...prevNotes, newNote]);
-    
+
         setTitle("");
         setText("");
         setShowNotes(false);
-        console.log("Document written with ID: ", docRef.id);
+       alert("notes added")
       } catch (e) {
         console.error("Error adding document: ", e);
       }
-    };
-//   const handleBlur = () => {
-//       AddNotes();
-//       setText("");
-//       setTitle("");
-//     setShowNotes(false);
-//   };
+    }
+  };
 
   return (
     <div className="Notes">
@@ -91,9 +106,7 @@ export const Notes = () => {
                   type="text"
                   placeholder="Title"
                   value={title}
-                  onChange={(e) => {
-                    setTitle(e.target.value);
-                  }}
+                  onChange={handleInputChange}
                 />
                 <BsPin />
               </div>
@@ -120,17 +133,23 @@ export const Notes = () => {
                     <BsThreeDotsVertical />
                   </button>
                 </div>
-                <button className="close-btn" onClick={AddNotes}>
-                  close
+                <button
+                  className="close-btn"
+                  onClick={() => {
+                    AddNotes();
+                    handleBlur();
+                  }}
+                >
+                  {closeButtonText}
                 </button>
               </div>
             </div>
           </div>
         )}
 
-        { Notes.map((todo) => {
+        {Notes.map((todo) => {
           return (
-            <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote}/>
+            <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote} />
           );
         })}
       </div>

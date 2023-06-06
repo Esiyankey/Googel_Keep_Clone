@@ -1,0 +1,18 @@
+@import "variables.scss";
+.archive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.archive-background{
+   @include flex(column,center,center)
+}
+.archive-icon {
+  font-size: 10rem;
+  opacity: 0.2;
+}
+.archive-text{
+    font-size: 1.3rem;
+    opacity: 0.3;
+}

@@ -1,0 +1,19 @@
+@import 'variables';
+
+.delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .delete-background{
+     @include flex(column,center,center)
+  }
+  .delete-icon {
+    font-size: 10rem;
+    opacity: 0.2;
+  }
+  .delete-text{
+      font-size: 1.3rem;
+      opacity: 0.3;
+  }
