@@ -11,10 +11,16 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+import toast, { Toaster } from 'react-hot-toast';
 import { db } from "../config/Firebase";
 import { SingleNotes } from "./SingleNotes";
 
 export const Notes = () => {
+
+
+  // toast 
+  const notify = () => toast.success(' Note successfully created!');
+const deleteNotify =() => toast.success(' Note successfully deleted!');
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [showNotes, setShowNotes] = useState(false);
@@ -80,7 +86,6 @@ export const Notes = () => {
         setTitle("");
         setText("");
         setShowNotes(false);
-       alert("notes added")
       } catch (e) {
         console.error("Error adding document: ", e);
       }
@@ -138,6 +143,7 @@ export const Notes = () => {
                   onClick={() => {
                     AddNotes();
                     handleBlur();
+                    notify();
                   }}
                 >
                   {closeButtonText}
