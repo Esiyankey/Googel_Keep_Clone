@@ -11,7 +11,7 @@
       padding: 0.8rem 0.8rem 0.8rem 0.8rem;
       border-radius: 0.5rem;
       width: 42rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
       border: 1px solid $primary-color;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
@@ -40,7 +40,7 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     input {
-      font-size: 1.2rem;
+      font-size: 1rem;
       display: block;
       width: 40rem;
       border: none;
@@ -82,24 +82,26 @@
       }
     }
   }
+}
   .Take-Notes {
     border: 1px solid $primary-color;
     width: 42rem;
     padding: 1rem;
     border-radius: 0.5rem;
-    transition: 0.5s ease;
+    transition: 0.2s ease;
     margin-top: 1rem;
     z-index: 10;
     background-color: white;
-    input {
-      font-size: 1.2rem;
-      display: block;
-      width: 40rem;
-      border: none;
-    }
-    input:focus {
-      outline: none;
-    }
+    
+    // input {
+    //   font-size: 1.2rem;
+    //   display: block;
+    //   width: 40rem;
+    //   border: none;
+    // }
+    // input:focus {
+    //   outline: none;
+    // }
     .pin {
       @include flex(row, space-between, center);
       margin-bottom: 0.8rem;
@@ -118,7 +120,8 @@
     .icons {
       @include flex(row, space-between, center);
       opacity: 0;
-      transition: 0.5s ease-out;
+      transition: 0.2s ease-out;
+      margin-top: 1.3rem;
     }
 
     .buttons {
@@ -168,7 +171,7 @@
       }
     }
   }
-}
+
 .Take-Notes:hover{
   outline: none;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -176,4 +179,14 @@
 .Take-Notes:hover .icons,
 .Take-Notes:hover .bspin{
   opacity: 1;
+}
+
+.Take-Notes.active{
+width: 12rem;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+.icons{
+  margin-top: 3rem;
+}
+
 }

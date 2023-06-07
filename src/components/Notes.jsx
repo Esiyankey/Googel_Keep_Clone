@@ -11,7 +11,7 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { db } from "../config/Firebase";
 import { SingleNotes } from "./SingleNotes";
 
@@ -20,8 +20,8 @@ export const Notes = () => {
 
   // toast 
   const notify = () => toast.success(' Note successfully created!');
-const deleteNotify =() => toast.success(' Note successfully deleted!');
   const [title, setTitle] = useState("");
+  const [deletedNotes,setDeletedNotes] =useState([])
   const [text, setText] = useState("");
   const [showNotes, setShowNotes] = useState(false);
   const [Notes, setNotes] = useState([]);
@@ -55,10 +55,12 @@ const deleteNotify =() => toast.success(' Note successfully deleted!');
   //delete note
   const deleteNote = async (noteId) => {
     try {
+      const deletedNote = notes.find((note) => note.id === noteId);
       await deleteDoc(doc(db, "Notes", noteId));
+      setDeletedNotes((prevDeletedNotes) => [...prevDeletedNotes, deletedNote]);
       setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
-      console.log("Note deleted successfully");
     } catch (error) {
+      toast.error("there was an error")
       console.error("Error deleting note:", error);
     }
   };

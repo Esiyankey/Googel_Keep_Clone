@@ -8,6 +8,7 @@ import { Notes } from "./components/Notes";
 import {Label } from './components/Label';
 import {Archive} from './components/Archive';
 import {Delete} from './components/Delete';
+import { AppProvider } from './components/AppContext';
 
 function App() {
   const router = createBrowserRouter([
@@ -41,7 +42,9 @@ function App() {
 
   return (
     <>
+     <AppProvider>
       <RouterProvider router={router}/>
+    </AppProvider>
     </>
   );
 }

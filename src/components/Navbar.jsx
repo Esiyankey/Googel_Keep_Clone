@@ -7,12 +7,14 @@ import { CiGrid2H } from "react-icons/ci";
 import { BsGrid } from "react-icons/bs";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import "../styles/Navbar.scss";
+import { AppContext } from './AppContext';
 import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   const [search, setSearch] = useState("");
   const [logOut, setLogOut] = useState(false);
   const [active,setActive] =useState(false);
+  const [showGrid,setShowGrid] = useState(AppContext)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,9 +78,14 @@ export const Navbar = () => {
       <div className="right-Navbar">
         <div className="Grid" type="button">
           
-          <button className="btn btn-grid">
-          <BsGrid className="grid"/>
-            <CiGrid2H />
+          <button className="btn btn-grid" onClick={() => {
+                setShowGrid(!showGrid);
+              }}>
+          {showGrid ? (
+                <BsGrid className="grid"/>
+              ) : (
+                <CiGrid2H />
+              )}
           </button>
         </div>
         <div className="drop-down">

@@ -4,7 +4,7 @@ import { SideBar } from "./SideBar";
 import "../styles/Section.scss";
 import { Outlet } from "react-router";
 import { Navbar } from "./Navbar";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 export const Section = () => {
   return (
     <>

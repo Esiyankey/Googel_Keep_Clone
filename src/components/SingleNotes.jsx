@@ -1,16 +1,15 @@
-import { useState } from "react";
+import { useState,useContext} from "react";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
+import { AppContext } from './AppContext';
 import { MdOutlineArchive } from "react-icons/md";
+import toast from 'react-hot-toast';
 
 export const SingleNotes = ({ todo,onDelete }) => {
   const [logOut, setLogOut] = useState(false);
-  const [onHover, setOnHover]=useState(false)
-
-//hover 
-const handleHover=()=>{
-  setOnHover(true)
-}
+  const { showGrid } = useContext(AppContext);
+  //toast
+  const deleteNotify =() => toast.success(' Note successfully deleted!');
 
   const handleDelete = () => {
     onDelete(todo.id); // Pass the note ID to the onDelete callback
@@ -23,29 +22,14 @@ const handleHover=()=>{
   };
 
   return (
-    <div>
-      <div className="Take-Notes" onHover={handleHover}>
+    <div className="singleNotes">
+      <div className={showGrid? "Take-Notes active":"Take-Notes"}>
         <div className="saved-notes">
           <div className="pin">
-            <input
-              type="text"
-              placeholder="Title"
-              value={todo.Title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-              }}
-            />
+            <div className="title">{todo.Title}</div>
             <BsPin className="bspin"/>
           </div>
-          <input
-            type="text"
-            placeholder="Take a note"
-            value={todo.Text}
-            onChange={(e) => {
-              setText(e.target.value);
-            }}
-          />
-
+          <div className="text">{todo.Text}</div>
           <div className="icons">
             <div className="buttons">
               <button className="btn">
@@ -57,12 +41,12 @@ const handleHover=()=>{
               <button className="btn">
                 <MdOutlineArchive />
               </button>
-              <button className="btn delete">
+              <button className="btn">
                 <BsThreeDotsVertical onClick={showDropdown} />
                 {logOut && (
                   <div className="Delete">
-                    <button onClick={handleDelete}>Delete note</button>{" "}
-                    <button>AddLabel</button>{" "}
+                    <button onClick={()=>{handleDelete();deleteNotify();}}>Delete note</button>
+                    <button>AddLabel</button>
                   </div>
                 )}
               </button>
