@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
 import { MdOutlineArchive } from "react-icons/md";
 import "../styles/Notes.scss";
+import { AppContext } from './AppContext';
 import {
   collection,
   getDocs,
@@ -11,20 +12,19 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import { db } from "../config/Firebase";
 import { SingleNotes } from "./SingleNotes";
 
 export const Notes = () => {
-
-
-  // toast 
-  const notify = () => toast.success(' Note successfully created!');
+  // toast
+  const notify = () => toast.success(" Note successfully created!");
   const [title, setTitle] = useState("");
-  const [deletedNotes,setDeletedNotes] =useState([])
+  const [deletedNotes, setDeletedNotes] = useState([]);
   const [text, setText] = useState("");
   const [showNotes, setShowNotes] = useState(false);
   const [Notes, setNotes] = useState([]);
+  const { showGrid } = useContext(AppContext);
   const [closeButtonText, setCloseButtonText] = useState("Close");
 
   const handleInputChange = (event) => {
@@ -60,7 +60,7 @@ export const Notes = () => {
       setDeletedNotes((prevDeletedNotes) => [...prevDeletedNotes, deletedNote]);
       setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
     } catch (error) {
-      toast.error("there was an error")
+      toast.error("there was an error");
       console.error("Error deleting note:", error);
     }
   };
@@ -155,11 +155,13 @@ export const Notes = () => {
           </div>
         )}
 
-        {Notes.map((todo) => {
-          return (
-            <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote} />
-          );
-        })}
+        <div className={showGrid?"Single":""}>
+          {Notes.map((todo) => {
+            return (
+              <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote} />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

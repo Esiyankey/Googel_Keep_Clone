@@ -67,12 +67,13 @@
     .close-btn {
       background: none;
       border: none;
+      border-radius: 2px;
       font-size: 1.2rem;
       padding: 0.4rem 0.7rem;
       color: #818283;
     }
     .close-btn:hover {
-      background-color: $primary-color;
+      background-color: rgba(238, 234, 234, 0.527);
     }
     .buttons {
       display: flex;
@@ -182,11 +183,12 @@
 }
 
 .Take-Notes.active{
-width: 12rem;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
+ width: 12rem;
 .icons{
   margin-top: 3rem;
 }
-
+}
+.Single{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr ;
 }

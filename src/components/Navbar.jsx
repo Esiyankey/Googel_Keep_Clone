@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FaBars, FaSistrix } from "react-icons/fa";
 import KeepLogo2 from "../assets/keep-logo2.png";
 import { auth } from "../config/Firebase";
@@ -7,26 +7,26 @@ import { CiGrid2H } from "react-icons/ci";
 import { BsGrid } from "react-icons/bs";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import "../styles/Navbar.scss";
-import { AppContext } from './AppContext';
+import { AppContext } from "./AppContext";
 import { useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
   const [search, setSearch] = useState("");
   const [logOut, setLogOut] = useState(false);
-  const [active,setActive] =useState(false);
-  const [showGrid,setShowGrid] = useState(AppContext)
-
+  const [active, setActive] = useState(false);
+  const {showGrid,ToggleGrid} = useContext(AppContext);
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       setActive(scrollTop > 70);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Clean up the event listener on component unmount
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -45,18 +45,13 @@ export const Navbar = () => {
     LogOut();
   };
 
-  //refresh
-  const refreshPage = () => {
-    window.location.reload();
-  };
-
   //Drop Down
 
   const showDropdown = () => {
     setLogOut(!logOut);
   };
   return (
-    <div className={active?"Navbar active":"Navbar"}>
+    <div className={active ? "Navbar active" : "Navbar"}>
       <div className="Left-Navbar">
         <button className="btn">
           <FaBars />
@@ -77,15 +72,8 @@ export const Navbar = () => {
       </div>
       <div className="right-Navbar">
         <div className="Grid" type="button">
-          
-          <button className="btn btn-grid" onClick={() => {
-                setShowGrid(!showGrid);
-              }}>
-          {showGrid ? (
-                <BsGrid className="grid"/>
-              ) : (
-                <CiGrid2H />
-              )}
+          <button className="btn btn-grid" onClick={ToggleGrid}>
+            {showGrid ? <BsGrid className="grid" /> : <CiGrid2H />}
           </button>
         </div>
         <div className="drop-down">

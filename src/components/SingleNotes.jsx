@@ -2,6 +2,7 @@ import { useState,useContext} from "react";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
 import { AppContext } from './AppContext';
+import '../styles/Notes.scss'
 import { MdOutlineArchive } from "react-icons/md";
 import toast from 'react-hot-toast';
 
@@ -23,7 +24,7 @@ export const SingleNotes = ({ todo,onDelete }) => {
 
   return (
     <div className="singleNotes">
-      <div className={showGrid? "Take-Notes active":"Take-Notes"}>
+      <div className={`Take-Notes ${showGrid ? "active" : ""}`}>
         <div className="saved-notes">
           <div className="pin">
             <div className="title">{todo.Title}</div>
