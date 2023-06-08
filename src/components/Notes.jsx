@@ -55,12 +55,12 @@ export const Notes = () => {
   //delete note
   const deleteNote = async (noteId) => {
     try {
-      const deletedNote = notes.find((note) => note.id === noteId);
+      const deletedNote = Notes.find((note) => note.id === noteId);
       await deleteDoc(doc(db, "Notes", noteId));
       setDeletedNotes((prevDeletedNotes) => [...prevDeletedNotes, deletedNote]);
       setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
     } catch (error) {
-      toast.error("there was an error");
+      toast.error("there was an error in deleting your note");
       console.error("Error deleting note:", error);
     }
   };

@@ -16,6 +16,7 @@
   .icons-container {
     display: flex;
     flex-direction: column;
+    gap: 0.1rem;
   }
   .btn{
     text-decoration: none;
@@ -29,7 +30,7 @@
     border-radius: 50%;
     font-size: 1.7rem;
     height: 3rem;
-    padding: 0.2rem 0.2rem;
+    padding: 0.1rem 0.1rem;
     gap: 4rem;
     display: flex;
     text-align: center;
