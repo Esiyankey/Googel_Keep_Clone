@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 
 export const SingleNotes = ({ todo,onDelete }) => {
   const [logOut, setLogOut] = useState(false);
+  cont [pinned,setPinned]=useState(false);
   const { showGrid } = useContext(AppContext);
   //toast
   const deleteNotify =() => toast.success(' Note successfully deleted!');
