@@ -1,10 +1,10 @@
-import { useEffect, useState,useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
 import { MdOutlineArchive } from "react-icons/md";
 import "../styles/Notes.scss";
-import { AppContext } from './AppContext';
+import { AppContext } from "./AppContext";
 import {
   collection,
   getDocs,
@@ -40,12 +40,16 @@ export const Notes = () => {
   //Read Data from firestore
 
   useEffect(() => {
-    const FetchNotes = async () => {
+    const FetchNotes = async (noteId) => {
       const querySnapshot = await getDocs(collection(db, "Notes"));
       const NotesArray = [];
       querySnapshot.forEach((doc) => {
-        NotesArray.push({ ...doc.data(), id: doc.id });
-        console.log(`${doc.id} => ${doc.data()}`);
+        const note = { ...doc.data(), id: doc.id };
+        if (!note.delete) {
+          notesArray.push(note);
+        }
+
+        // NotesArray.push({ ...doc.data(), id: doc.id });
       });
       setNotes(NotesArray);
     };
@@ -56,7 +60,10 @@ export const Notes = () => {
   const deleteNote = async (noteId) => {
     try {
       const deletedNote = Notes.find((note) => note.id === noteId);
-      await deleteDoc(doc(db, "Notes", noteId));
+      await deleteDoc(doc(db, "Notes", noteId)),
+        {
+          deleted: true,
+        };
       setDeletedNotes((prevDeletedNotes) => [...prevDeletedNotes, deletedNote]);
       setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
     } catch (error) {
@@ -155,7 +162,7 @@ export const Notes = () => {
           </div>
         )}
 
-        <div className={showGrid?"Single":""}>
+        <div className={showGrid ? "Single" : ""}>
           {Notes.map((todo) => {
             return (
               <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote} />
