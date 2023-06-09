@@ -6,13 +6,17 @@ import '../styles/Notes.scss'
 import { MdOutlineArchive } from "react-icons/md";
 import toast from 'react-hot-toast';
 
-export const SingleNotes = ({ todo,onDelete }) => {
+export const SingleNotes = ({ todo,onDelete,archived}) => {
   const [logOut, setLogOut] = useState(false);
   const [pinned,setPinned]=useState(false);
   const { showGrid } = useContext(AppContext);
   //toast
   const deleteNotify =() => toast.success(' Note successfully deleted!');
 
+
+  const handleArchive =()=>{
+    archived(todo.id)
+  }
   const handleDelete = () => {
     onDelete(todo.id); // Pass the note ID to the onDelete callback
   };
@@ -41,7 +45,7 @@ export const SingleNotes = ({ todo,onDelete }) => {
                 <BsImage />
               </button>
               <button className="btn">
-                <MdOutlineArchive />
+                <MdOutlineArchive  onClick={handleArchive}/>
               </button>
               <button className="btn">
                 <BsThreeDotsVertical onClick={showDropdown} />

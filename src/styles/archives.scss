@@ -16,3 +16,23 @@
     font-size: 1.3rem;
     opacity: 0.3;
 }
+.archivedNotes{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  gap: 1rem;
+
+}
+.archived-notes{
+  width: 12rem;
+  height: 7rem;
+  border: 1px solid $primary-color;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: 0.2s ease;
+  margin-top: 1rem;
+  background-color: white;
+  
+  .title{
+    margin-bottom: 4rem;
+  }
+}

@@ -1,19 +1,53 @@
-@import 'variables';
-
+@import "variables";
+.DeletedNotes{
+  
+}
+.empty-bin {
+  display: flex;
+  gap: 1rem;
+  text-align: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.empty-btn{
+  background-color: $primary-color;
+  padding: 0.6rem 1rem;
+  border-radius: 0.3rem;
+}
 .delete {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+.delete-background {
+  @include flex(column, center, center);
+}
+.delete-icon {
+  font-size: 10rem;
+  opacity: 0.2;
+}
+.delete-text {
+  font-size: 1.3rem;
+  opacity: 0.3;
+}
+.deletedNotes{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+  gap: 1rem;
+
+}
+.deleted-notes{
+  width: 12rem;
+  height: 7rem;
+  border: 1px solid $primary-color;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: 0.2s ease;
+  margin-top: 1rem;
+  background-color: white;
+  
+  .title{
+    margin-bottom: 4rem;
   }
-  .delete-background{
-     @include flex(column,center,center)
-  }
-  .delete-icon {
-    font-size: 10rem;
-    opacity: 0.2;
-  }
-  .delete-text{
-      font-size: 1.3rem;
-      opacity: 0.3;
-  }
+}

@@ -9,7 +9,7 @@ import {
   collection,
   getDocs,
   addDoc,
-  deleteDoc,
+ updateDoc,
   doc,
 } from "firebase/firestore";
 import toast from "react-hot-toast";
@@ -20,7 +20,6 @@ export const Notes = () => {
   // toast
   const notify = () => toast.success(" Note successfully created!");
   const [title, setTitle] = useState("");
-  const [deletedNotes, setDeletedNotes] = useState([]);
   const [text, setText] = useState("");
   const [showNotes, setShowNotes] = useState(false);
   const [Notes, setNotes] = useState([]);
@@ -41,12 +40,12 @@ export const Notes = () => {
 
   useEffect(() => {
     const FetchNotes = async (noteId) => {
-      const querySnapshot = await getDocs(collection(db, "Notes"));
+      const querySnapshot = await getDocs(collection(db, "noteTodos"));
       const NotesArray = [];
       querySnapshot.forEach((doc) => {
         const note = { ...doc.data(), id: doc.id };
         if (!note.delete) {
-          notesArray.push(note);
+          NotesArray.push(note);
         }
 
         // NotesArray.push({ ...doc.data(), id: doc.id });
@@ -55,19 +54,32 @@ export const Notes = () => {
     };
     FetchNotes();
   }, []);
+//archive
+const Archive = async (noteId)=>{
+  try{
+    await updateDoc(doc(db,"noteTodos",noteId),
+    
+    {
+      archived:true,
+    });
+    setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
+  }
+  catch(error){
+    console.error("Error deleting note:", error);
+  }
+}
 
   //delete note
   const deleteNote = async (noteId) => {
     try {
-      const deletedNote = Notes.find((note) => note.id === noteId);
-      await deleteDoc(doc(db, "Notes", noteId)),
+      // const deletedNote = Notes.find((note) => note.id === noteId);
+      await updateDoc(doc(db, "noteTodos", noteId),
         {
           deleted: true,
-        };
-      setDeletedNotes((prevDeletedNotes) => [...prevDeletedNotes, deletedNote]);
+        });
       setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
     } catch (error) {
-      toast.error("there was an error in deleting your note");
+      // toast.error("there was an error in deleting your note");
       console.error("Error deleting note:", error);
     }
   };
@@ -85,7 +97,7 @@ export const Notes = () => {
   const AddNotes = async () => {
     if (title.trim() !== "" || text.trim() !== "") {
       try {
-        const docRef = await addDoc(collection(db, "Notes"), {
+        const docRef = await addDoc(collection(db, "noteTodos"), {
           Title: title,
           Text: text,
         });
@@ -165,7 +177,7 @@ export const Notes = () => {
         <div className={showGrid ? "Single" : ""}>
           {Notes.map((todo) => {
             return (
-              <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote} />
+              <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote} archived={Archive}/>
             );
           })}
         </div>
