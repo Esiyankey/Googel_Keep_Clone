@@ -48,6 +48,79 @@
   background-color: white;
   
   .title{
-    margin-bottom: 4rem;
+  margin-bottom: 1rem;
   }
+}
+.deleted-btn {
+  border: none;
+  background: none;
+  font-size: 1.3rem;
+  color: #818283;
+}
+
+.deleted-icons {
+  @include flex(row, space-between, center);
+  opacity: 0;
+  transition: 0.2s ease-out;
+  margin-top: 1.3rem;
+}
+
+.deleted-buttons {
+  display: flex;
+  gap: 1rem;
+  .image {
+    display: block;
+  }
+}
+
+.bspin {
+  opacity: 0;
+  font-size: 1.4rem;
+  transition: 0.5s ease-out;
+}
+.Delete {
+  background-color: rgba(255, 255, 255, 0.993);
+  border: 1px solid $primary-color;
+  width: 8rem;
+  height: 5rem;
+  position: absolute;
+  // right: 1rem;
+  // top: 5rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  font-family: Roboto;
+  font-weight: 600;
+  padding-left: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  list-style: none;
+
+  button {
+    margin: 0.5rem 0;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: Roboto;
+    padding: 0.2rem;
+  }
+  button:hover {
+    background-color: $primary-color;
+  }
+}
+.deleted-notes:hover {
+  outline: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.deleted-pin {
+  @include flex(row, space-between, center);
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+.deleted-notes:hover .deleted-icons,
+.deleted-notes:hover .bspin {
+  opacity: 1;
 }

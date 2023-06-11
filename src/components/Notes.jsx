@@ -9,16 +9,16 @@ import {
   collection,
   getDocs,
   addDoc,
- updateDoc,
+  updateDoc,
   doc,
+  onSnapshot,
 } from "firebase/firestore";
 import toast from "react-hot-toast";
 import { db } from "../config/Firebase";
 import { SingleNotes } from "./SingleNotes";
+import { nanoid } from "nanoid";
 
 export const Notes = () => {
-  // toast
-  const notify = () => toast.success(" Note successfully created!");
   const [title, setTitle] = useState("");
   const [text, setText] = useState("");
   const [showNotes, setShowNotes] = useState(false);
@@ -40,46 +40,48 @@ export const Notes = () => {
 
   useEffect(() => {
     const FetchNotes = async (noteId) => {
-      const querySnapshot = await getDocs(collection(db, "noteTodos"));
-      const NotesArray = [];
-      querySnapshot.forEach((doc) => {
-        const note = { ...doc.data(), id: doc.id };
-        if (!note.delete) {
-          NotesArray.push(note);
-        }
+      const notesCollection = collection(db,"noteTodos")
+      onSnapshot(notesCollection,(querySnapsht)=>{
+        const notesArray = []
+        querySnapsht.docs.forEach((doc)=>{
+          notesArray.push({id:doc.id,...doc.data()})
+        })
+        const filteredArray = notesArray.filter((item) => {
+          return !item.archived || !item.deleted
+        });
+        setNotes(filteredArray)
 
-        // NotesArray.push({ ...doc.data(), id: doc.id });
-      });
-      setNotes(NotesArray);
+      })
     };
     FetchNotes();
   }, []);
-//archive
-const Archive = async (noteId)=>{
-  try{
-    await updateDoc(doc(db,"noteTodos",noteId),
-    
-    {
-      archived:true,
-    });
-    setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
-  }
-  catch(error){
-    console.error("Error deleting note:", error);
-  }
-}
+  //archive
+  const Archive = async (noteId) => {
+    try {
+      await updateDoc(
+        doc(db, "noteTodos", noteId),
+        {
+          archived: true,
+        }
+      );
+      toast.success("Notes archived successfully")
+    } catch (error) {
+      console.error("Error ARCHIVING  note:", error);
+    }
+  };
 
   //delete note
   const deleteNote = async (noteId) => {
     try {
-      // const deletedNote = Notes.find((note) => note.id === noteId);
-      await updateDoc(doc(db, "noteTodos", noteId),
+      await updateDoc(
+        doc(db, "noteTodos", noteId),
         {
           deleted: true,
-        });
-      setNotes((prevNotes) => prevNotes.filter((todo) => todo.id !== noteId));
+        }
+      );
+      toast.success("Notes deleted successfully")
     } catch (error) {
-      // toast.error("there was an error in deleting your note");
+      toast.error("Notes could not be deleted")
       console.error("Error deleting note:", error);
     }
   };
@@ -97,17 +99,19 @@ const Archive = async (noteId)=>{
   const AddNotes = async () => {
     if (title.trim() !== "" || text.trim() !== "") {
       try {
-        const docRef = await addDoc(collection(db, "noteTodos"), {
+        const newNote = {
           Title: title,
           Text: text,
-        });
-        const newNote = { id: docRef.id, Title: title, Text: text };
-        setNotes((prevNotes) => [...prevNotes, newNote]);
-
+          deleted: false,
+          archived: false,
+        };
+       await addDoc(collection(db, "noteTodos"),newNote);
         setTitle("");
         setText("");
         setShowNotes(false);
+        toast.success(" Note successfully created!")
       } catch (e) {
+        toast.error(" Note ended in tears!")
         console.error("Error adding document: ", e);
       }
     }
@@ -164,7 +168,6 @@ const Archive = async (noteId)=>{
                   onClick={() => {
                     AddNotes();
                     handleBlur();
-                    notify();
                   }}
                 >
                   {closeButtonText}
@@ -177,7 +180,12 @@ const Archive = async (noteId)=>{
         <div className={showGrid ? "Single" : ""}>
           {Notes.map((todo) => {
             return (
-              <SingleNotes todo={todo} key={todo.id} onDelete={deleteNote} archived={Archive}/>
+              <SingleNotes
+                todo={todo}
+                key={todo.id}
+                onDelete={deleteNote}
+                archived={Archive}
+              />
             );
           })}
         </div>

@@ -5,25 +5,30 @@
   align-items: center;
   height: 100vh;
 }
-.archive-background{
-   @include flex(column,center,center)
+.archive-background {
+  @include flex(column, center, center);
 }
 .archive-icon {
   font-size: 10rem;
   opacity: 0.2;
 }
-.archive-text{
-    font-size: 1.3rem;
-    opacity: 0.3;
+.archive-text {
+  font-size: 1.3rem;
+  opacity: 0.3;
 }
-.archivedNotes{
+.archived-btn {
+  border: none;
+  background: none;
+  font-size: 1.3rem;
+  color: #818283;
+}
+.archivedNotes {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr ;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
-
 }
-.archived-notes{
-  width: 12rem;
+.archived-notes {
+  width: 14rem;
   height: 7rem;
   border: 1px solid $primary-color;
   padding: 1rem;
@@ -31,8 +36,74 @@
   transition: 0.2s ease;
   margin-top: 1rem;
   background-color: white;
-  
-  .title{
-    margin-bottom: 4rem;
+
+  .title {
+    margin-bottom: 1rem;
   }
+}
+.archived-icons {
+  @include flex(row, space-between, center);
+  opacity: 0;
+  transition: 0.2s ease-out;
+  margin-top: 1.3rem;
+}
+
+.archived-buttons {
+  display: flex;
+  gap: 1rem;
+  .image {
+    display: block;
+  }
+}
+
+.bspin {
+  opacity: 0;
+  font-size: 1.4rem;
+  transition: 0.5s ease-out;
+}
+.Delete {
+  background-color: rgba(255, 255, 255, 0.993);
+  border: 1px solid $primary-color;
+  width: 8rem;
+  height: 5rem;
+  position: absolute;
+  // right: 1rem;
+  // top: 5rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 0.4rem;
+  font-family: Roboto;
+  font-weight: 600;
+  padding-left: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  list-style: none;
+
+  button {
+    margin: 0.5rem 0;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    font-weight: 400;
+    font-family: Roboto;
+    padding: 0.2rem;
+  }
+  button:hover {
+    background-color: $primary-color;
+  }
+}
+.archived-notes:hover {
+  outline: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.archived-pin {
+  @include flex(row, space-between, center);
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+.archived-notes:hover .archived-icons,
+.archived-notes:hover .bspin {
+  opacity: 1;
 }

@@ -1,46 +1,59 @@
 import { useState, useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineArchive } from "react-icons/md";
 import "../styles/delete.scss";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection,onSnapshot } from "firebase/firestore";
 import { doc } from "firebase/firestore";
 import { db } from "../config/Firebase";
+import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
+import { BiPalette } from "react-icons/bi";
 
 export const Delete = () => {
   const [deleteNotes, setDeleteNotes] = useState([]);
+  const [logOut, setLogOut] = useState(false);
 
+  const showDropdown = () => {
+    setLogOut(!logOut);
+  };
   useEffect(() => {
-    const fetchDeletedNotes = async () => {
-      const notesRef = collection(db, "noteTodos");
+    const DeleteNotes = async (noteId) => {
+      const notesCollection = collection(db,"noteTodos")
+      onSnapshot(notesCollection,(querySnapshot)=>{
+        const notesArray = []
+        querySnapshot.docs.forEach((doc)=>{
+          notesArray.push({id:doc.id,...doc.data()})
+        })
+        const filteredArray = notesArray.filter((item) => {
+          return item.deleted
+        });
+        setDeleteNotes(filteredArray)
 
-      const deletedNotesQuery = query(notesRef, where("deleted", "==", true));
-
-      // Get the deleted notes
-      const querySnapshot = await getDocs(deletedNotesQuery);
-
-      const deletedNotes = [];
-      querySnapshot.forEach((doc) => {
-        const note = doc.data();
-        note.id = doc.id;
-        deletedNotes.push(note);
-        setDeleteNotes(deletedNotes);
-      });
+      })
     };
-    fetchDeletedNotes();
-    //   const FetchNotes = async (noteId) => {
-    //     const querySnapshot = await getDocs(collection(db, "Notes"));
-    //     const deleteArray = [];
-    //     querySnapshot.forEach((doc) => {
-    //       const note = { ...doc.data(), id: doc.id };
-    //       if (note.delete) {
-    //         deleteArray.push(note);
-    //       }
-
-    //       // NotesArray.push({ ...doc.data(), id: doc.id });
-    //     });
-    //     setDeleteNotes(deleteArray);
-    //   };
-    //   FetchNotes();
+  DeleteNotes();
   }, []);
+
+
+  // useEffect(() => {
+  //   const fetchDeletedNotes = async () => {
+  //     const notesRef = collection(db, "noteTodos");
+
+  //     const deletedNotesQuery = query(notesRef, where("deleted", "==", true));
+
+  //     // Get the deleted notes
+  //     const querySnapshot = await getDocs(deletedNotesQuery);
+
+  //     const deletedNotes = [];
+  //     querySnapshot.forEach((doc) => {
+  //       const note = doc.data();
+  //       note.id = doc.id;
+  //       deletedNotes.push(note);
+  //       setDeleteNotes(deletedNotes);
+  //     });
+  //   };
+  //   fetchDeletedNotes();
+   
+  // }, []);
 
   return (
     <>
@@ -53,10 +66,40 @@ export const Delete = () => {
           {deleteNotes.map((item) => {
             return (
               <div className="deleted-notes">
-                <div className="">
+                <div className="deleted-pin">
                   <div className="title">{item.Title}</div>
+                  <BsPin className="bspin"/>
                 </div>
                 <div className="text">{item.Text}</div>
+                <div className="deleted-icons">
+                  <div className="deleted-buttons">
+                    <button className="archived-btn">
+                      <BiPalette />
+                    </button>
+                    <button className="deleted-btn">
+                      <BsImage />
+                    </button>
+                    <button className="deleted-btn">
+                      <MdOutlineArchive  />
+                    </button>
+                    <button className="deleted-btn">
+                      <BsThreeDotsVertical onClick={showDropdown}/>
+                      {logOut && (
+                        <div className="Delete">
+                          <button
+                            onClick={() => {
+                              handleDelete();
+                              deleteNotify();
+                            }}
+                          >
+                            Delete note
+                          </button>
+                          <button>AddLabel</button>
+                        </div>
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
             );
           })}
