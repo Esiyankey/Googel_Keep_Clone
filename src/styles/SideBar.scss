@@ -1,13 +1,13 @@
 @import "variables";
 
 .SideBar-Container {
-  width: 5rem;
+  // width: 5rem;
   height: 100%;
   position: fixed;
   top: 80px;
   left: 0;
   z-index: 10;
-//   transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
   .sideBar-icons {
     min-height: 100%;
     padding-top: 1rem;
@@ -21,22 +21,22 @@
   .btn{
     text-decoration: none;
   }
- span {
+  span {
     display: none;
   }
   .icons {
+    transition: 0.06s ease;
     height: 3rem;
     width: 3rem;
     border-radius: 50%;
     font-size: 1.7rem;
-    height: 3rem;
     padding: 0.1rem 0.1rem;
-    gap: 4rem;
     display: flex;
     text-align: center;
     justify-content: space-between;
     align-items: center;
   }
+  
   .icons.active{
 background-color: $primary-color2;
   }
@@ -59,8 +59,7 @@ background-color: $primary-color2;
   //     align-items: center;
   // }
   .icons:hover {
-    gap: 4rem;
-    width: 17.5rem;
+    width: 17.7rem;
     border-radius: 0 100px 100px 0;
     background-color: $primary-color;
     .icons-container{

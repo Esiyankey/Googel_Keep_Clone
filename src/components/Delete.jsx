@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import { MdOutlineArchive } from "react-icons/md";
+import {MdDeleteForever } from "react-icons/md";
 import "../styles/delete.scss";
-import { collection,onSnapshot } from "firebase/firestore";
-import { doc } from "firebase/firestore";
+import { collection, onSnapshot, updateDoc,doc } from "firebase/firestore";
 import { db } from "../config/Firebase";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
+import { toast } from "react-hot-toast";
+import {FaTrashRestoreAlt} from "react-icons/fa"
 
 export const Delete = () => {
   const [deleteNotes, setDeleteNotes] = useState([]);
@@ -16,23 +17,35 @@ export const Delete = () => {
     setLogOut(!logOut);
   };
   useEffect(() => {
-    const DeleteNotes = async (noteId) => {
-      const notesCollection = collection(db,"noteTodos")
-      onSnapshot(notesCollection,(querySnapshot)=>{
-        const notesArray = []
-        querySnapshot.docs.forEach((doc)=>{
-          notesArray.push({id:doc.id,...doc.data()})
-        })
-        const filteredArray = notesArray.filter((item) => {
-          return item.deleted
+    const DeleteNotes = async () => {
+      const notesCollection = collection(db, "noteTodos");
+      onSnapshot(notesCollection, (querySnapshot) => {
+        const notesArray = [];
+        querySnapshot.docs.forEach((doc) => {
+          notesArray.push({ id: doc.id, ...doc.data() });
         });
-        setDeleteNotes(filteredArray)
-
-      })
+        const filteredArray = notesArray.filter((item) => {
+          return item.deleted;
+        });
+        setDeleteNotes(filteredArray);
+      });
     };
-  DeleteNotes();
+    DeleteNotes();
   }, []);
 
+  const restoreNote = async (noteId) => {
+    try {
+      const noteRef = doc(db, "noteTodos", noteId);
+      await updateDoc(
+       noteRef,{
+        deleted: false,
+        });
+      toast.success("Notes restored successfully");
+    } catch (error) {
+      toast.error("Notes could not be restored");
+      console.error("Error deleting note:", error);
+    }
+  };
 
   // useEffect(() => {
   //   const fetchDeletedNotes = async () => {
@@ -52,7 +65,7 @@ export const Delete = () => {
   //     });
   //   };
   //   fetchDeletedNotes();
-   
+
   // }, []);
 
   return (
@@ -62,38 +75,23 @@ export const Delete = () => {
           <h4>Notes in the Recycle Bin are deleted after 7 days</h4>
           <h3 className="empty-btn">Empty bin</h3>
         </div>
-        <div className="deletedNotes">
+        <div className="deletedNotes" >
           {deleteNotes.map((item) => {
             return (
-              <div className="deleted-notes">
+              <div className="deleted-notes" key={item.id}>
                 <div className="deleted-pin">
                   <div className="title">{item.Title}</div>
-                  <BsPin className="bspin"/>
+                  <BsPin className="bspin" />
                 </div>
                 <div className="text">{item.Text}</div>
                 <div className="deleted-icons">
                   <div className="deleted-buttons">
-                    <button className="archived-btn">
-                      <BiPalette />
-                    </button>
+                    <button className="deleted-btn "><MdDeleteForever /></button>
                     <button className="deleted-btn">
-                      <BsImage />
-                    </button>
-                    <button className="deleted-btn">
-                      <MdOutlineArchive  />
-                    </button>
-                    <button className="deleted-btn">
-                      <BsThreeDotsVertical onClick={showDropdown}/>
+                      <FaTrashRestoreAlt onClick={showDropdown} className="forever"/>
                       {logOut && (
                         <div className="Delete">
-                          <button
-                            onClick={() => {
-                              handleDelete();
-                              deleteNotify();
-                            }}
-                          >
-                            Delete note
-                          </button>
+                          <button onClick={()=>{restoreNote(item.id)}}>Restore note</button>
                           <button>AddLabel</button>
                         </div>
                       )}

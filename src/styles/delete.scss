@@ -20,6 +20,9 @@
   align-items: center;
   height: 70vh;
 }
+.forever{
+  font-size: 1rem;
+}
 .delete-background {
   @include flex(column, center, center);
 }

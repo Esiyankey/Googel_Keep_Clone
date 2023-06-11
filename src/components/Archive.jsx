@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MdOutlineArchive } from "react-icons/md";
+import { MdOutlineUnarchive } from "react-icons/md";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
 import "../styles/archives.scss";
@@ -72,7 +72,7 @@ export const Archive = () => {
                       <BsImage />
                     </button>
                     <button className="archived-btn">
-                      <MdOutlineArchive  />
+                      <MdOutlineUnarchive  />
                     </button>
                     <button className="archived-btn">
                       <BsThreeDotsVertical onClick={showDropdown}/>
