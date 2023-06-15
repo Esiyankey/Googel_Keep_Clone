@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import {MdDeleteForever } from "react-icons/md";
 import "../styles/delete.scss";
-import { collection, onSnapshot, updateDoc,doc } from "firebase/firestore";
+import { collection, onSnapshot, updateDoc,doc,deleteDoc } from "firebase/firestore";
 import { db } from "../config/Firebase";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
@@ -13,9 +13,7 @@ export const Delete = () => {
   const [deleteNotes, setDeleteNotes] = useState([]);
   const [logOut, setLogOut] = useState(false);
 
-  const showDropdown = () => {
-    setLogOut(!logOut);
-  };
+ 
   useEffect(() => {
     const DeleteNotes = async () => {
       const notesCollection = collection(db, "noteTodos");
@@ -46,6 +44,11 @@ export const Delete = () => {
       console.error("Error deleting note:", error);
     }
   };
+
+  const deleteForever = async(noteId)=>{
+    const noteRef = doc(db, "noteTodos", noteId);
+    await deleteDoc(noteRef,noteId)
+  }
 
   // useEffect(() => {
   //   const fetchDeletedNotes = async () => {
@@ -87,14 +90,8 @@ export const Delete = () => {
                 <div className="deleted-icons">
                   <div className="deleted-buttons">
                     <button className="deleted-btn "><MdDeleteForever /></button>
-                    <button className="deleted-btn">
-                      <FaTrashRestoreAlt onClick={showDropdown} className="forever"/>
-                      {logOut && (
-                        <div className="Delete">
-                          <button onClick={()=>{restoreNote(item.id)}}>Restore note</button>
-                          <button>AddLabel</button>
-                        </div>
-                      )}
+                    <button className="deleted-btn" onClick={()=>{restoreNote(item.id)}}>
+                      <FaTrashRestoreAlt  className="forever"/>
                     </button>
                   </div>
                 </div>

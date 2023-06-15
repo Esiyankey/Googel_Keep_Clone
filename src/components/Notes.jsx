@@ -2,12 +2,13 @@ import { useEffect, useState, useContext } from "react";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
-import { MdOutlineArchive } from "react-icons/md";
+import { MdOutlineArchive, MdOutlineLightbulb } from "react-icons/md";
 import "../styles/Notes.scss";
 import { AppContext } from "./AppContext";
 import {
   collection,
-  getDocs,
+  setDoc,
+  where,
   addDoc,
   updateDoc,
   doc,
@@ -39,32 +40,38 @@ export const Notes = () => {
   //Read Data from firestore
 
   useEffect(() => {
-    const FetchNotes = async (noteId) => {
-      const notesCollection = collection(db,"noteTodos")
-      onSnapshot(notesCollection,(querySnapsht)=>{
-        const notesArray = []
-        querySnapsht.docs.forEach((doc)=>{
-          notesArray.push({id:doc.id,...doc.data()})
-        })
-        const filteredArray = notesArray.filter((item) => {
-          return !item.archived || !item.deleted
-        });
-        setNotes(filteredArray)
+    const fetchNotes = async () => {
+      const notesCollection = collection(db, "noteTodos");
+      onSnapshot(notesCollection, (querySnapsht) => {
+        const notesArray = [];
+        querySnapsht.docs.forEach((doc) => {
+         // console.log(doc.data()["deleted"]);
+          //console.log(doc.data()["archived"]);
+          if (doc.data()["deleted"] || doc.data()["archived"]) {
+            return;
+          }
+          else {
 
-      })
+            notesArray.push(doc.data());
+          }
+        });
+
+        // const filteredArray = notesArray.filter((item) => {
+        //   return !item.archived || !item.deleted;
+        // });
+        setNotes(notesArray);
+        console.log(notesArray);
+      });
     };
-    FetchNotes();
+    fetchNotes();
   }, []);
   //archive
   const Archive = async (noteId) => {
     try {
-      await updateDoc(
-        doc(db, "noteTodos", noteId),
-        {
-          archived: true,
-        }
-      );
-      toast.success("Notes archived successfully")
+      await updateDoc(doc(db, "noteTodos", noteId), {
+        archived: true,
+      });
+      toast.success("Notes archived successfully");
     } catch (error) {
       console.error("Error ARCHIVING  note:", error);
     }
@@ -73,15 +80,12 @@ export const Notes = () => {
   //delete note
   const deleteNote = async (noteId) => {
     try {
-      await updateDoc(
-        doc(db, "noteTodos", noteId),
-        {
-          deleted: true,
-        }
-      );
-      toast.success("Notes deleted successfully")
+      await updateDoc(doc(db, "noteTodos", noteId), {
+        deleted: true,
+      });
+      toast.success("Notes deleted successfully");
     } catch (error) {
-      toast.error("Notes could not be deleted")
+      toast.error("Notes could not be deleted");
       console.error("Error deleting note:", error);
     }
   };
@@ -99,19 +103,22 @@ export const Notes = () => {
   const AddNotes = async () => {
     if (title.trim() !== "" || text.trim() !== "") {
       try {
+        //init new doc
+        const newDoc = doc(collection(db, "noteTodos"));
         const newNote = {
+          id: newDoc.id,
           Title: title,
           Text: text,
           deleted: false,
           archived: false,
         };
-       await addDoc(collection(db, "noteTodos"),newNote);
+        await setDoc(newDoc, newNote);
         setTitle("");
         setText("");
         setShowNotes(false);
-        toast.success(" Note successfully created!")
+        toast.success(" Note successfully created!");
       } catch (e) {
-        toast.error(" Note ended in tears!")
+        toast.error(" Note ended in tears!");
         console.error("Error adding document: ", e);
       }
     }
@@ -177,8 +184,15 @@ export const Notes = () => {
           </div>
         )}
 
+
         <div className={showGrid ? "Single" : ""}>
-          {Notes.map((todo) => {
+
+          { Notes.length===0? ( <div className="archive">
+          <div className="archive-background">
+            <MdOutlineLightbulb className="archive-icon"  />
+            <h3 className="archive-text">Your notes show here</h3>
+          </div>
+        </div>):Notes.map((todo) => {
             return (
               <SingleNotes
                 todo={todo}
