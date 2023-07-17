@@ -99,6 +99,9 @@ body{
   color: #f5bc20;
 }
 @media screen and (max-width:640px){
+  .Login{
+    min-height: 70vh;
+  }
   .login-container{
     width: 300px;
     padding: 0 0.5rem;
