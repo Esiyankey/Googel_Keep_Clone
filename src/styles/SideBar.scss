@@ -74,29 +74,33 @@ background-color: $primary-color2;
     position: fixed;
     bottom: 0;
     top: 90%;
+    height: unset;
     background-color: white;
     border-top: 1px solid rgba(128, 128, 128, 0.705);
     width: 100%;
    .sideBar-icons{
     min-height: unset;
+   padding-top: 0.4rem;
    }
     .icons-container{
       display: flex;
-      gap: 4rem;
       flex-direction: row;
+      align-items: center;
+      width: 100%;
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
       justify-content: space-between;
     }
-  
+    
     .icons:hover{
       width: 3rem;
       border-radius: 50%;
-      // background-color: unset;
       span{
         display: none;
       }
     }
   }
   .SideBar-Container:hover{
-    width: unset;
+    width: 100%;
   }
 }
