@@ -59,7 +59,7 @@ export const Navbar = () => {
         <img src={KeepLogo2} alt="Keep-Logo here" className="keep-image" />
         <h4>Keep</h4>
       </div>
-      <div className="Center-Navbar">
+      {/* <div className="Center-Navbar">
         <FaSistrix className="icon" />
         <input
           type="text"
@@ -69,7 +69,7 @@ export const Navbar = () => {
             setSearch(e.target.value);
           }}
         />
-      </div>
+      </div> */}
       <div className="right-Navbar">
         <div className="Grid" type="button">
           <button className="btn btn-grid" onClick={ToggleGrid}>

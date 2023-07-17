@@ -97,15 +97,6 @@ body{
     z-index: 10;
     background-color: white;
     
-    // input {
-    //   font-size: 1.2rem;
-    //   display: block;
-    //   width: 40rem;
-    //   border: none;
-    // }
-    // input:focus {
-    //   outline: none;
-    // }
     .pin {
       @include flex(row, space-between, center);
       margin-bottom: 0.8rem;
@@ -195,4 +186,30 @@ body{
 display: grid;
 grid-template-columns: 1fr 1fr 1fr ;
 justify-content: center;
+}
+@media screen and (max-width:640px){
+  .Notes{
+    .input{
+      justify-content: center;
+      align-items: center;
+      input{
+        width: 20rem;
+      }
+      .input-icons{
+        left: 75%;
+      }
+
+    }
+    .Take-notes{
+      width: 20rem;
+      // text-align: center;
+      input{
+        width: 18rem;
+      }
+    }
+  }
+  .Take-Notes{
+    width: 20rem;
+  }
+
 }
