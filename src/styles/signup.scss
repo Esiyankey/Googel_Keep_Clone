@@ -1,6 +1,6 @@
 @import "variables";
 body{
-  overflow: hidden
+  overflow: hidden;
 }
 .SignUp {
   @include flex(column, center, center);

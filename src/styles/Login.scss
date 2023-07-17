@@ -1,5 +1,7 @@
 @import "variables";
-
+body{
+  overflow: hidden;
+}
 .Login {
   font-family: $LoginFont;
   @include flex(column, center, center);
