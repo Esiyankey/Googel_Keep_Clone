@@ -47,26 +47,7 @@ export const Archive = () => {
     }
   }
 
-  // useEffect(() => {
-  //   const fetchArchivedNotes = async () => {
-  //     const notesRef = collection(db, "noteTodos");
-
-  //     const ArchivedNotesQuery = query(notesRef, where("archived", "==", true));
-
-  //     // Get the deleted notes
-  //     const querySnapshot = await getDocs(ArchivedNotesQuery);
-
-  //     const archivedNotes = [];
-  //     querySnapshot.forEach((doc) => {
-  //       const note = doc.data();
-  //       note.id = doc.id;
-  //       archivedNotes.push(note);
-  //       setArchived(archivedNotes);
-  //     });
-  //   };
-  //   fetchArchivedNotes();
-  // }, []);
-
+  
   return (
     <>
       <div className="Archived">

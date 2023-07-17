@@ -69,8 +69,6 @@
   width: 8rem;
   height: 5rem;
   position: absolute;
-  // right: 1rem;
-  // top: 5rem;
   font-size: 1rem;
   text-align: center;
   border-radius: 0.4rem;
@@ -108,4 +106,17 @@
 .archived-notes:hover .archived-icons,
 .archived-notes:hover .bspin {
   opacity: 1;
+}
+@media screen and (max-width:640px){
+  .archive{
+    left: 30%;
+  }
+  .archivedNotes{
+    display: flex;
+    flex-direction: column;
+  }
+  .archived-notes{
+    width: 15rem;
+  }
+  
 }

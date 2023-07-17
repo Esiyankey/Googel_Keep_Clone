@@ -93,8 +93,6 @@
   width: 8rem;
   height: 5rem;
   position: absolute;
-  // right: 1rem;
-  // top: 5rem;
   font-size: 1rem;
   text-align: center;
   border-radius: 0.4rem;
@@ -132,4 +130,24 @@
 .deleted-notes:hover .deleted-icons,
 .deleted-notes:hover .bspin {
   opacity: 1;
+}
+
+@media screen and (max-width:640px){
+  
+  .empty-bin{
+    display: block;
+  }
+  .delete{
+    left: 30%;
+  }
+  .deletedNotes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .deleted-notes{
+    width: 15rem;
+  }
+  
 }
