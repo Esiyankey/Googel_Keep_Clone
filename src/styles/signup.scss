@@ -1,4 +1,7 @@
 @import "variables";
+body{
+  overflow: hidden
+}
 .SignUp {
   @include flex(column, center, center);
   min-height: 100vh;
