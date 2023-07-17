@@ -78,3 +78,21 @@ background-color: $primary-color2;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
   background-color: white;
 }
+
+@media screen and (max-width:640px){
+  .SideBar-Container{
+    position: fixed;
+    bottom: 0;
+    top: 90%;
+    background-color: white;
+    border-top: 1px solid rgba(128, 128, 128, 0.705);
+    width: 100%;
+   
+    .icons-container{
+      display: flex;
+      gap: 4rem;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+}
