@@ -1,7 +1,6 @@
 @import "variables";
 
 .SideBar-Container {
-  // width: 5rem;
   height: 100%;
   position: fixed;
   top: 80px;
@@ -48,16 +47,7 @@ background-color: $primary-color2;
     position: relative;
     left: 0.7rem;
   }
-  //   .icon-active.active{
-  //     margin-left:2rem ;
-  //     height: 3rem;
-  //     width: 3rem;
-  //     border-radius: 50%;
-  //     background-color: $primary-color2;
-  //     display: flex;
-  //     justify-content: center;
-  //     align-items: center;
-  // }
+  
   .icons:hover {
     width: 17.7rem;
     border-radius: 0 100px 100px 0;
@@ -87,12 +77,26 @@ background-color: $primary-color2;
     background-color: white;
     border-top: 1px solid rgba(128, 128, 128, 0.705);
     width: 100%;
-   
+   .sideBar-icons{
+    min-height: unset;
+   }
     .icons-container{
       display: flex;
       gap: 4rem;
       flex-direction: row;
       justify-content: space-between;
     }
+  
+    .icons:hover{
+      width: 3rem;
+      border-radius: 50%;
+      // background-color: unset;
+      span{
+        display: none;
+      }
+    }
+  }
+  .SideBar-Container:hover{
+    width: unset;
   }
 }

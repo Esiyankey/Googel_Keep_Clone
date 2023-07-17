@@ -96,3 +96,11 @@
 .error-message{
   color: #f5bc20;
 }
+@media screen and (max-width:640px){
+  .login-container{
+    width: 345px;
+    padding: 0.5rem 1rem;
+    input{
+    }
+  }
+}
