@@ -152,25 +152,7 @@ export const SignUp = () => {
               }}
             ></div>
           </div>
-          {/* <div className="choose-country">
-            <select
-              value={selectedOption}
-              onChange={(e) => {
-                setSelectedOption(e.target.value);
-              }}
-              className="select"
-            >
-              <option value="" disabled hidden>
-                Select country of residence
-              </option>
-              <option value="option1" className="option">
-                Ghana
-              </option>
-              <option value="option2" className="option">
-                Uganda
-              </option>
-            </select>
-          </div> */}
+         
           {focused ? (
             <div className="information">
               <CgDanger className="icon" />{" "}
