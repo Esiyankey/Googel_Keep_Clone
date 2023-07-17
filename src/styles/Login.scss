@@ -100,6 +100,9 @@
   .login-container{
     width: 300px;
     padding: 0 0.5rem;
-    
+    border: none;
+    input{
+      padding: 1.5rem 1.3rem 1rem 1.3rem;
+    }
   }
 }
