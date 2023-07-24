@@ -1,19 +1,24 @@
 import { useState, useEffect } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import {MdDeleteForever } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 import "../styles/delete.scss";
-import { collection, onSnapshot, updateDoc,doc,deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  updateDoc,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { db } from "../config/Firebase";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
 import { toast } from "react-hot-toast";
-import {FaTrashRestoreAlt} from "react-icons/fa"
+import { FaTrashRestoreAlt } from "react-icons/fa";
 
 export const Delete = () => {
   const [deleteNotes, setDeleteNotes] = useState([]);
   const [logOut, setLogOut] = useState(false);
 
- 
   useEffect(() => {
     const DeleteNotes = async () => {
       const notesCollection = collection(db, "noteTodos");
@@ -34,10 +39,9 @@ export const Delete = () => {
   const restoreNote = async (noteId) => {
     try {
       const noteRef = doc(db, "noteTodos", noteId);
-      await updateDoc(
-       noteRef,{
+      await updateDoc(noteRef, {
         deleted: false,
-        });
+      });
       toast.success("Notes restored successfully");
     } catch (error) {
       toast.error("Notes could not be restored");
@@ -45,10 +49,17 @@ export const Delete = () => {
     }
   };
 
-  const deleteForever = async(noteId)=>{
-    const noteRef = doc(db, "noteTodos", noteId);
-    await deleteDoc(noteRef,noteId)
-  }
+  const deleteForever = async (noteId) => {
+    try {
+      const noteRef = doc(db, "noteTodos", noteId);
+
+      await deleteDoc(noteRef,noteId);
+
+      console.log("Note deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    }
+  };
 
   // useEffect(() => {
   //   const fetchDeletedNotes = async () => {
@@ -78,7 +89,7 @@ export const Delete = () => {
           <h4>Notes in the Recycle Bin are deleted after 7 days</h4>
           <h3 className="empty-btn">Empty bin</h3>
         </div>
-        <div className="deletedNotes" >
+        <div className="deletedNotes">
           {deleteNotes.map((item) => {
             return (
               <div className="deleted-notes" key={item.id}>
@@ -89,9 +100,19 @@ export const Delete = () => {
                 <div className="text">{item.Text}</div>
                 <div className="deleted-icons">
                   <div className="deleted-buttons">
-                    <button className="deleted-btn "><MdDeleteForever /></button>
-                    <button className="deleted-btn" onClick={()=>{restoreNote(item.id)}}>
-                      <FaTrashRestoreAlt  className="forever"/>
+                    <button
+                      className="deleted-btn"
+                      onClick={deleteForever(item.id)}
+                    >
+                      <MdDeleteForever />
+                    </button>
+                    <button
+                      className="deleted-btn"
+                      onClick={() => {
+                        restoreNote(item.id);
+                      }}
+                    >
+                      <FaTrashRestoreAlt className="forever" />
                     </button>
                   </div>
                 </div>
