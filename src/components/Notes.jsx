@@ -49,13 +49,15 @@ export const Notes = () => {
         const notesArray = [];
         querySnapsht.docs.forEach((doc) => {
           const userIds= auth.currentUser.uid
-          if (doc.data()["deleted"] || doc.data()["archived"]) {
-            if(userIds===doc.data().id){
-              return;
-            }
-          } else {
+          if (doc.data().id === userIds && !doc.data().deleted && !doc.data().archived){
             notesArray.push(doc.data());
           }
+        //   if (doc.data()["deleted"] || doc.data()["archived"]) {
+        //      return;
+            
+        //   } else {
+        //     notesArray.push(doc.data());
+        //   }
         });
         setNotes(notesArray);
         
