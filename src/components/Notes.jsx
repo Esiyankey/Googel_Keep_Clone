@@ -15,7 +15,7 @@ import {
   onSnapshot,
 } from "firebase/firestore";
 import toast from "react-hot-toast";
-import { db } from "../config/Firebase";
+import { db,auth } from "../config/Firebase";
 import { SingleNotes } from "./SingleNotes";
 import { nanoid } from "nanoid";
 
@@ -26,11 +26,14 @@ export const Notes = () => {
   const [Notes, setNotes] = useState([]);
   const { showGrid } = useContext(AppContext);
   const [closeButtonText, setCloseButtonText] = useState("Close");
-
+  
+  
+  
+  
   const handleInputChange = (event) => {
     const value = event.target.value;
     setTitle(value);
-
+    
     if (value.length > 0) {
       setCloseButtonText("Create");
     } else {
@@ -38,33 +41,29 @@ export const Notes = () => {
     }
   };
   //Read Data from firestore
-
+  
   useEffect(() => {
     const fetchNotes = async () => {
       const notesCollection = collection(db, "noteTodos");
       onSnapshot(notesCollection, (querySnapsht) => {
         const notesArray = [];
         querySnapsht.docs.forEach((doc) => {
-         // console.log(doc.data()["deleted"]);
-          //console.log(doc.data()["archived"]);
+          const userIds= auth.currentUser.uid
           if (doc.data()["deleted"] || doc.data()["archived"]) {
-            return;
-          }
-          else {
-
+            if(userIds===doc.data().id){
+              return;
+            }
+          } else {
             notesArray.push(doc.data());
           }
         });
-
-        // const filteredArray = notesArray.filter((item) => {
-        //   return !item.archived || !item.deleted;
-        // });
         setNotes(notesArray);
-        console.log(notesArray);
+        
       });
     };
     fetchNotes();
   }, []);
+
   //archive
   const Archive = async (noteId) => {
     try {
@@ -104,9 +103,10 @@ export const Notes = () => {
     if (title.trim() !== "" || text.trim() !== "") {
       try {
         //init new doc
+        const userIds= auth.currentUser.uid
         const newDoc = doc(collection(db, "noteTodos"));
         const newNote = {
-          id: newDoc.id,
+          id: userIds,
           Title: title,
           Text: text,
           deleted: false,
@@ -118,7 +118,7 @@ export const Notes = () => {
         setShowNotes(false);
         toast.success(" Note successfully created!");
       } catch (e) {
-        toast.error(" Note ended in tears!");
+        toast.error(" Note wasnt created ");
         console.error("Error adding document: ", e);
       }
     }
@@ -184,24 +184,26 @@ export const Notes = () => {
           </div>
         )}
 
-
         <div className={showGrid ? "Single" : ""}>
-
-          { Notes.length===0? ( <div className="archive">
-          <div className="archive-background">
-            <MdOutlineLightbulb className="archive-icon"  />
-            <h3 className="archive-text">Your notes show here</h3>
-          </div>
-        </div>):Notes.map((todo) => {
-            return (
-              <SingleNotes
-                todo={todo}
-                key={todo.id}
-                onDelete={deleteNote}
-                archived={Archive}
-              />
-            );
-          })}
+          {Notes.length === 0 ? (
+            <div className="archive">
+              <div className="archive-background">
+                <MdOutlineLightbulb className="archive-icon" />
+                <h3 className="archive-text">Your notes show here</h3>
+              </div>
+            </div>
+          ) : (
+            Notes.map((todo) => {
+              return (
+                <SingleNotes
+                  todo={todo}
+                  key={todo.id}
+                  onDelete={deleteNote}
+                  archived={Archive}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </div>

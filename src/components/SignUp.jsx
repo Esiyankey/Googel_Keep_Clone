@@ -15,7 +15,7 @@ export const SignUp = () => {
   const [strength, setStrength] = useState(0);
   const [focused, setFocused] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [error,setError]=useState("")
+  const [error, setError] = useState("");
   //check password strength
 
   const checkPasswordStrength = (value) => {
@@ -80,7 +80,13 @@ export const SignUp = () => {
   const signup = async () => {
     try {
       setIsLoading(true);
-      await createUserWithEmailAndPassword(auth, Email, Password);
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        Email,
+        Password
+      );
+      const user = userCredentials.user;
+      console.log(user);
       navigate("/home");
     } catch (error) {
       console.error(error.message);
@@ -125,7 +131,6 @@ export const SignUp = () => {
               onFocus={() => {
                 setFocused(true);
               }}
-              
             />
             <button
               className="btn"
@@ -152,7 +157,7 @@ export const SignUp = () => {
               }}
             ></div>
           </div>
-         
+
           {focused ? (
             <div className="information">
               <CgDanger className="icon" />{" "}
@@ -167,8 +172,7 @@ export const SignUp = () => {
         </form>
         <button className="signup-btn" type="submit" onClick={signup}>
           {" "}
-
-        {isLoading? <Loading/>:"Sign Up"}
+          {isLoading ? <Loading /> : "Sign Up"}
         </button>
         {error && <div className="error-message">{error}</div>}
         <h5>
