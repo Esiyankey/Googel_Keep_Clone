@@ -57,7 +57,7 @@ export const Navbar = () => {
           <FaBars />
         </button>
         <img src={KeepLogo2} alt="Keep-Logo here" className="keep-image" />
-        <h4>Keep</h4>
+        <h4>Notify</h4>
       </div>
       {/* <div className="Center-Navbar">
         <FaSistrix className="icon" />

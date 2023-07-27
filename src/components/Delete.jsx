@@ -9,7 +9,7 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
-import { db } from "../config/Firebase";
+import { db,auth } from "../config/Firebase";
 import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
 import { BiPalette } from "react-icons/bi";
 import { toast } from "react-hot-toast";
@@ -23,14 +23,20 @@ export const Delete = () => {
     const DeleteNotes = async () => {
       const notesCollection = collection(db, "noteTodos");
       onSnapshot(notesCollection, (querySnapshot) => {
+        const user= auth.currentUser.uid
         const notesArray = [];
         querySnapshot.docs.forEach((doc) => {
-          notesArray.push({ id: doc.id, ...doc.data() });
+          // notesArray.push({ id:doc.id, ...doc.data() });
+
+          if (doc.data().deleted && doc.data().userId === user) {
+            notesArray.push({ id: doc.id, ...doc.data() });
+          }
+
         });
-        const filteredArray = notesArray.filter((item) => {
-          return item.deleted;
-        });
-        setDeleteNotes(filteredArray);
+        // const filteredArray = notesArray.filter((item) => {
+        //   return item.deleted;
+        // });
+        setDeleteNotes(notesArray);
       });
     };
     DeleteNotes();
@@ -102,7 +108,7 @@ export const Delete = () => {
                   <div className="deleted-buttons">
                     <button
                       className="deleted-btn"
-                      onClick={deleteForever(item.id)}
+                      onClick={()=>{deleteForever(item.id)}}
                     >
                       <MdDeleteForever />
                     </button>

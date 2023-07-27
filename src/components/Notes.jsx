@@ -8,8 +8,6 @@ import { AppContext } from "./AppContext";
 import {
   collection,
   setDoc,
-  where,
-  addDoc,
   updateDoc,
   doc,
   onSnapshot,
@@ -48,16 +46,22 @@ export const Notes = () => {
       onSnapshot(notesCollection, (querySnapsht) => {
         const notesArray = [];
         querySnapsht.docs.forEach((doc) => {
-          const userIds= auth.currentUser.uid
-          if (doc.data().id === userIds && !doc.data().deleted && !doc.data().archived){
+          const user=auth.currentUser.uid
+          if (doc.data().userId === user && !doc.data().deleted && !doc.data().archived ) {
             notesArray.push(doc.data());
           }
-        //   if (doc.data()["deleted"] || doc.data()["archived"]) {
-        //      return;
+
+
+
+         
+
+
+          // if (doc.data()["deleted"] || doc.data()["archived"]) {
+          //    return;
             
-        //   } else {
-        //     notesArray.push(doc.data());
-        //   }
+          // } else {
+          //   notesArray.push(doc.data());
+          // }
         });
         setNotes(notesArray);
         
@@ -66,17 +70,7 @@ export const Notes = () => {
     fetchNotes();
   }, []);
 
-  //archive
-  const Archive = async (noteId) => {
-    try {
-      await updateDoc(doc(db, "noteTodos", noteId), {
-        archived: true,
-      });
-      toast.success("Notes archived successfully");
-    } catch (error) {
-      console.error("Error ARCHIVING  note:", error);
-    }
-  };
+  
 
   //delete note
   const deleteNote = async (noteId) => {
@@ -102,13 +96,15 @@ export const Notes = () => {
   };
   //create notes
   const AddNotes = async () => {
+    const userId = auth.currentUser.uid;
     if (title.trim() !== "" || text.trim() !== "") {
       try {
         //init new doc
-        const userIds= auth.currentUser.uid
+   
         const newDoc = doc(collection(db, "noteTodos"));
         const newNote = {
-          id: userIds,
+          id:newDoc.id,
+          userId,
           Title: title,
           Text: text,
           deleted: false,
@@ -125,6 +121,24 @@ export const Notes = () => {
       }
     }
   };
+
+
+
+//archive
+const Archive = async (noteId) => {
+  try {
+    await updateDoc(doc(db, "noteTodos", noteId), {
+      archived: true,
+    });
+    toast.success("Notes archived successfully");
+  } catch (error) {
+    console.error("Error ARCHIVING  note:", error);
+  }
+}
+
+
+
+
 
   return (
     <div className="Notes">
