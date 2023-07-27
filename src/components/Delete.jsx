@@ -10,8 +10,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { db,auth } from "../config/Firebase";
-import { BsImage, BsPin, BsThreeDotsVertical } from "react-icons/bs";
-import { BiPalette } from "react-icons/bi";
+import {  BsPin} from "react-icons/bs";
 import { toast } from "react-hot-toast";
 import { FaTrashRestoreAlt } from "react-icons/fa";
 
@@ -67,6 +66,21 @@ export const Delete = () => {
     }
   };
 
+
+  const handleClearAllNotes = async () => {
+    try {
+      for (const note of deleteNotes) {
+        await deleteDoc(doc(db, "noteTodos", note.id));
+      }
+      setNotesArray([]);
+    } catch (error) {
+      console.error("Error deleting archived notes from Firebase:", error);
+    }
+  };
+
+  
+
+
   // useEffect(() => {
   //   const fetchDeletedNotes = async () => {
   //     const notesRef = collection(db, "noteTodos");
@@ -93,7 +107,7 @@ export const Delete = () => {
       <div className="DeletedNotes">
         <div className="empty-bin">
           <h4>Notes in the Recycle Bin are deleted after 7 days</h4>
-          <h3 className="empty-btn">Empty bin</h3>
+          <h3 className="empty-btn" onClick={handleClearAllNotes}>Empty bin</h3>
         </div>
         <div className="deletedNotes">
           {deleteNotes.map((item) => {
@@ -126,13 +140,20 @@ export const Delete = () => {
             );
           })}
         </div>
+
+
+        {deleteNotes.length === 0 &&(
+            
         <div className="delete">
           <div className="delete-background">
             <RiDeleteBin6Line className="delete-icon" />
             <h3 className="delete-text">Your deleted items show here</h3>
           </div>
-        </div>
+        </div>)
+      }
+
       </div>
+      
     </>
   );
 };

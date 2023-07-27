@@ -6,7 +6,7 @@ export const Label = () => {
     <div className="label">
       <div className="label-background">
         <MdLabelOutline className="label-icon" />
-        <h3 className="label-text">Your deleted items show here</h3>
+        <h3 className="label-text">Your labeled items show here</h3>
       </div>
     </div>
   );

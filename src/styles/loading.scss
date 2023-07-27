@@ -70,3 +70,9 @@
       transform: rotate(1turn);
    }
 }
+
+@media screen and (max-width:640px){
+   .Loader{
+      left: 9rem;
+   }
+}

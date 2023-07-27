@@ -5,15 +5,31 @@ import { BiPalette } from "react-icons/bi";
 import "../styles/archives.scss";
 import { toast } from "react-hot-toast";
 import { collection, onSnapshot, doc, updateDoc } from "firebase/firestore";
-import { db,auth } from "../config/Firebase";
+import { db, auth } from "../config/Firebase";
 
 export const Archive = () => {
   const [archivedNotes, setArchivedNotes] = useState([]);
-  const [logOut, setLogOut] = useState(false);
+  const [deleteNote, setDeleteNote] = useState(false);
 
   const showDropdown = () => {
-    setLogOut(!logOut);
+    setDeleteNote(!deleteNote);
   };
+
+
+//delete note
+const handleDelete = async (noteId) => {
+  try {
+    await updateDoc(doc(db, "noteTodos", noteId), {
+      deleted: true,
+    });
+    toast.success("Notes deleted successfully");
+  } catch (error) {
+    toast.error("Notes could not be deleted");
+    console.error("Error deleting note:", error);
+  }
+};
+
+
 
   useEffect(() => {
     const ArchivedNotes = async (noteId) => {
@@ -24,7 +40,7 @@ export const Archive = () => {
         querySnapshot.docs.forEach((doc) => {
           // notesArray.push({ id: noteId, ...doc.data() });
 
-          if (doc.data().archived && doc.data().userId === user) {
+          if (doc.data().archived && doc.data().userId === user && !doc.data().deleted) {
             notesArray.push(doc.data());
           }
         });
@@ -33,7 +49,6 @@ export const Archive = () => {
         // });
 
         // item.userId === user &&
-
 
         setArchivedNotes(notesArray);
       });
@@ -57,7 +72,7 @@ export const Archive = () => {
   return (
     <>
       <div className="Archived">
-          <h1 style={{textAlign:"center"}}>Archived Notes </h1>
+        <h1 style={{ textAlign: "center" }}>Archived Notes </h1>
         <div className="archivedNotes">
           {archivedNotes.map((item) => {
             return (
@@ -83,12 +98,12 @@ export const Archive = () => {
                       />
                     </button>
                     <button className="archived-btn">
-                      <BsThreeDotsVertical onClick={showDropdown} />
-                      {logOut && (
+                      <BsThreeDotsVertical onClick={()=>{showDropdown(item.id)}} />
+                      {deleteNote && (
                         <div className="Delete">
                           <button
                             onClick={() => {
-                              handleDelete();
+                              handleDelete(item.id);
                             }}
                           >
                             Delete note

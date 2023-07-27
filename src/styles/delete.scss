@@ -15,6 +15,7 @@
   border-radius: 0.1rem;
   font-size: 0.9rem;
   opacity: 0.5;
+  cursor: pointer;
 }
 .empty-btn:hover{
   background-color: $primary-color;
@@ -138,7 +139,7 @@
     display: block;
   }
   .delete{
-    left: 30%;
+    left: 20%;
   }
   .deletedNotes{
     display: flex;
