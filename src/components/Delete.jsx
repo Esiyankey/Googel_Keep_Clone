@@ -29,7 +29,7 @@ export const Delete = () => {
           // notesArray.push({ id:doc.id, ...doc.data() });
 
           if (doc.data().deleted && doc.data().userId === user) {
-            notesArray.push({ id: doc.id, ...doc.data() });
+            notesArray.push(doc.data());
           }
 
         });
