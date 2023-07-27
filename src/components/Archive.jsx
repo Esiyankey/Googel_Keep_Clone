@@ -25,7 +25,7 @@ export const Archive = () => {
           // notesArray.push({ id: noteId, ...doc.data() });
 
           if (doc.data().archived && doc.data().userId === user) {
-            notesArray.push({ id: doc.id, ...doc.data() });
+            notesArray.push(doc.data());
           }
         });
         // const filteredArray = notesArray.filter((item) => {
