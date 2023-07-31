@@ -121,6 +121,11 @@ body{
 }
 @media screen and (max-width:640px){
  .Navbar{
+  .Left-Navbar{
+    .btn{
+      display: none;
+    }
+  }
    .right-Navbar{
       padding-right: 0.8rem;
     }
