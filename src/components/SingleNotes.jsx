@@ -38,12 +38,12 @@ export const SingleNotes = ({ todo,onDelete,archived}) => {
           <div className="text">{todo.Text}</div>
           <div className="icons">
             <div className="buttons">
-              <button className="btn">
+              {/* <button className="btn">
                 <BiPalette />
               </button>
               <button className="btn">
                 <BsImage />
-              </button>
+              </button> */}
               <button className="btn">
                 <MdOutlineArchive  onClick={handleArchive}/>
               </button>

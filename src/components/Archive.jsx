@@ -15,22 +15,18 @@ export const Archive = () => {
     setDeleteNote(!deleteNote);
   };
 
-
-//delete note
-const handleDelete = async (noteId) => {
-  try {
-    await updateDoc(doc(db, "noteTodos", noteId), {
-      deleted: true,
-    });
-    toast.success("Notes deleted successfully");
-  } catch (error) {
-    toast.error("Notes could not be deleted");
-    console.error("Error deleting note:", error);
-  }
-};
-
-
-
+  //delete note
+  const handleDelete = async (noteId) => {
+    try {
+      await updateDoc(doc(db, "noteTodos", noteId), {
+        deleted: true,
+      });
+      toast.success("Notes deleted successfully");
+    } catch (error) {
+      toast.error("Notes could not be deleted");
+      console.error("Error deleting note:", error);
+    }
+  };
   useEffect(() => {
     const ArchivedNotes = async (noteId) => {
       const notesCollection = collection(db, "noteTodos");
@@ -40,7 +36,11 @@ const handleDelete = async (noteId) => {
         querySnapshot.docs.forEach((doc) => {
           // notesArray.push({ id: noteId, ...doc.data() });
 
-          if (doc.data().archived && doc.data().userId === user && !doc.data().deleted) {
+          if (
+            doc.data().archived &&
+            doc.data().userId === user &&
+            !doc.data().deleted
+          ) {
             notesArray.push(doc.data());
           }
         });
@@ -98,7 +98,11 @@ const handleDelete = async (noteId) => {
                       />
                     </button>
                     <button className="archived-btn">
-                      <BsThreeDotsVertical onClick={()=>{showDropdown(item.id)}} />
+                      <BsThreeDotsVertical
+                        onClick={() => {
+                          showDropdown(item.id);
+                        }}
+                      />
                       {deleteNote && (
                         <div className="Delete">
                           <button
